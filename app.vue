@@ -2,34 +2,45 @@
 import Player from './models/Player'
 
 const players = []
-const { data, pending, error } = await useLazyFetch('http://localhost:3001/players', {
-  headers: { secret: 'Rudzielec2208' },
-  transform: response => response.map(player =>
-      players.push(new Player(
-          player.name,
-          player.lastname,
-          player.number,
-          player.height,
-          player.position
-      ).getPlayerData()
-    )
+const config = useRuntimeConfig()
+
+const { data, pending, error } = await useFetch('/players', {
+  baseURL: config.public.apiBase,
+  headers: {
+    secret: config.public.apiSecret,
+    'Content-Type': 'application/json'
+  },
+  transform: response => response.forEach(player =>
+    players.push(new Player(
+      player.name,
+      player.lastname,
+      player.number,
+      player.height,
+      player.position
+    ).getPlayerData())
   )
 })
-setTimeout(() => console.log(players), 1500)
+
+if (error.value) console.log(error.value)
 </script>
 
 <template>
   <main>
-    <section v-if="pending">
-      <h1>Ładuję...</h1>
-      {{ players.length }}
-    </section>
-    <section v-else v-for="player in players" :key="player.lastname">
-      <h1>{{ player.lastname }}</h1>
-      <p>{{ player.name }}</p>
-      <p>{{ player.number }}</p>
-      <p>{{ `${player.height.in}`.replaceAll('.', "'") }}</p>
-      <p>{{ player.position.short }}</p>
-    </section>
+    <client-only>
+      <section v-show="!pending && !error">
+        <h1>Lista graczy</h1>
+        <ul>
+          <li v-for="player in players" :key="player.lastname">
+            <aside>
+              <h1>{{ player.lastname }}</h1>
+              <p>{{ player.name }}</p>
+              <p>{{ player.number }}</p>
+              <p>{{ `${player.height.in}`.replaceAll('.', "'") }}</p>
+              <p>{{ player.position.short }}</p>
+            </aside>
+          </li>
+        </ul>
+      </section>
+    </client-only>
   </main>
 </template>
