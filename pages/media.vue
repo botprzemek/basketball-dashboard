@@ -7,5 +7,5 @@ useHead({
 </script>
 
 <template>
-  <h1>{{ $t(`path.${this.$route.name.split('___')[0]}`) }}</h1>
+  <h1>{{ $t(`path.${$route.name.split('___')[0]}`) }}</h1>
 </template>

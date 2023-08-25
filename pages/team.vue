@@ -10,7 +10,7 @@ let { data: players, pending, error } = await useFetch('/api/players')
 </script>
 
 <template>
-  <h1>{{ $t(`path.${this.$route.name.split('___')[0]}`) }}</h1>
+  <h1>{{ $t(`path.${$route.name.split('___')[0]}`) }}</h1>
   <ul>
     <li v-for="player in players" :key="player.lastname">
       <h3>{{ player['lastname'] }}</h3>
