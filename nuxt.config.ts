@@ -1,5 +1,6 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
+  $production: undefined,
   modules: [
     '@nuxtjs/i18n',
   ],
@@ -12,7 +13,7 @@ export default defineNuxtConfig({
   runtimeConfig: {
     apiSecret: process.env.API_SECRET,
     public: {
-      websiteName: 'Knury Knurów',
+      websiteName: process.env.APP_NAME,
       apiBase: process.env.API_BASE
     }
   },

@@ -49,7 +49,6 @@ class Position {
     }
 
     getPositionByIndex(index: number): _Position | undefined {
-        console.log(index)
         const positionList: _Position[] = [
             { index: 0, short: 'PG' },
             { index: 1, short: 'SG' },

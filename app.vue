@@ -11,8 +11,10 @@ useHead({
 
 <template>
   <Navigation/>
-  <NuxtLayout>
-    <NuxtPage/>
-  </NuxtLayout>
+  <main>
+    <NuxtLayout>
+      <NuxtPage/>
+    </NuxtLayout>
+  </main>
   <Footer/>
 </template>
