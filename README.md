@@ -1,11 +1,11 @@
 # TODO
-1. [PWA](https://pwa.nuxtjs.org/)
-2. SEO and Meta tags
-3. Favicons
-4. Lighthouse 100, 100, 100
+1. [PWA](https://pwa.nuxtjs.org/) ✅
+2. SEO and Meta tags ✅
+3. Favicons ✅
+4. Lighthouse 100, 100, 100 ✅
 5. Components (News, Contact form, Media files)
 6. Translation
-7. Layout
+7. Layout (Normal and Web Accessibility [definePageMeta.layout])
 8. Production
 
 # Nuxt 3 Minimal Starter

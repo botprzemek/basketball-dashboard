@@ -1,5 +1,5 @@
 <script setup lang="ts">
-const { t } = useI18n({ useScope: "global" })
+const { t } = useI18n({ useScope: 'global' })
 
 useHead({
   title: t(`path.${useRouter().currentRoute.value.name.split('___')[0]}`)
@@ -8,4 +8,5 @@ useHead({
 
 <template>
   <h1>{{ $t(`path.${$route.name.split('___')[0]}`) }}</h1>
+  <a href="/api/files/logo/ai">Download</a>
 </template>

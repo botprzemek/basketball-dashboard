@@ -1,5 +1,6 @@
 {
   "name": "nuxt-app",
+  "version": "1.0.0",
   "private": true,
   "scripts": {
     "build": "nuxt build",
@@ -8,10 +9,37 @@
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/botprzemek/basketball-api.git"
+  },
+  "keywords": [
+    "rest",
+    "api",
+    "basketball",
+    "express",
+    "nodejs"
+  ],
+  "author": "botprzemek",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/botprzemek/basketball-api/issues"
+  },
   "devDependencies": {
     "@nuxt/devtools": "latest",
+    "@nuxt/image": "^1.0.0-rc.1",
     "@nuxtjs/i18n": "^8.0.0-rc.3",
+    "@nuxtjs/pwa": "^3.3.5",
+    "@nuxtjs/tailwindcss": "^6.8.0",
+    "@splinetool/loader": "^0.9.428",
     "@types/node": "^18.17.3",
-    "nuxt": "^3.6.5"
+    "@types/three": "^0.155.1",
+    "@vueuse/core": "^10.4.0",
+    "@vueuse/nuxt": "^10.4.0",
+    "nuxt": "^3.6.5",
+    "three": "^0.155.0"
+  },
+  "dependencies": {
+    "@splinetool/runtime": "^0.9.428"
   }
 }

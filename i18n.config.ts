@@ -6,7 +6,7 @@ export default defineI18nConfig(() => ({
             welcome: 'Witaj!',
             path: {
                 contact: 'Kontakt',
-                index: 'Start',
+                index: 'Strona główna',
                 media: 'Media',
                 news: 'Aktualności',
                 team: 'Zespół'
@@ -16,7 +16,7 @@ export default defineI18nConfig(() => ({
             welcome: 'Welcome!',
             path: {
                 contact: 'Contact',
-                index: 'Start',
+                index: 'Home',
                 media: 'Media',
                 news: 'News',
                 team: 'Team'

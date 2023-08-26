@@ -1,19 +1,22 @@
 <script setup lang="ts">
+const { locale, locales } = useI18n()
 const localePath = useLocalePath()
 const switchLocalePath = useSwitchLocalePath()
+const paths = [ 'index', 'team', 'news', 'media', 'contact' ]
+
+useHead({
+  htmlAttrs: {
+    lang: locale.value
+  },
+})
 </script>
 <template>
   <header>
     <nav>
       <ul>
-        <li><NuxtLink :to="localePath('index')">{{ $t('path.index') }}</NuxtLink></li>
-        <li><NuxtLink :to="localePath('team')">{{ $t('path.team') }}</NuxtLink></li>
-        <li><NuxtLink :to="localePath('news')">{{ $t('path.news') }}</NuxtLink></li>
-        <li><NuxtLink :to="localePath('media')">{{ $t('path.media') }}</NuxtLink></li>
-        <li><NuxtLink :to="localePath('contact')">{{ $t('path.contact') }}</NuxtLink></li>
+        <li v-for="path in paths" :key="path"><NuxtLink :to="localePath(path)" style="text-decoration: none; color: white">{{ $t(`path.${path}`).replaceAll('Strona g', 'G') }}</NuxtLink></li>
       </ul>
     </nav>
-    <NuxtLink :to="switchLocalePath('pl')">PL</NuxtLink>
-    <NuxtLink :to="switchLocalePath('en')">EN</NuxtLink>
+    <NuxtLink :to="switchLocalePath(locale.code)" v-for="locale in locales" :key="locale" style="text-decoration: none; color: white">{{ locale.name }}</NuxtLink>
   </header>
 </template>
