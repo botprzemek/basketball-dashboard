@@ -21,7 +21,7 @@ useSeoMeta({
 </script>
 
 <template>
-<!--  <Model/>-->
+  <Model/>
   <Navigation/>
   <main>
     <NuxtLayout>
