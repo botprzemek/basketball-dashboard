@@ -11,7 +11,7 @@ useHead({
 })
 </script>
 <template>
-  <header>
+  <header class="relative z-50">
     <nav>
       <ul>
         <li v-for="path in paths" :key="path"><NuxtLink :to="localePath(path)" style="text-decoration: none; color: white">{{ $t(`path.${path}`).replaceAll('Strona g', 'G') }}</NuxtLink></li>

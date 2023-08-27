@@ -12,13 +12,21 @@ export default defineNuxtConfig({
   buildModules: [
     '@nuxtjs/pwa',
   ],
+  runtimeConfig: {
+    apiSecret: process.env.API_SECRET,
+    public: {
+      websiteName: process.env.APP_NAME,
+      apiBase: process.env.API_BASE
+    }
+  },
   pwa: {
     manifest: {
       name: 'Knury Knurów',
       short_name: 'Knury',
       description: 'Strona drużyny koszykarskiej Knury Knurów. Inicjatywa wytrwałej młodzieży z ambicjami. Nasza społeczność wciąż się rozrasta, co pozwala nam cieszyć się z gry na boisku i poza nim.',
       background_color: '#1d1d1d',
-      lang: 'pl'
+      lang: 'pl',
+      display: 'standalone',
     },
     meta: {
       'apple-mobile-web-app-capable': true,
@@ -27,6 +35,7 @@ export default defineNuxtConfig({
     }
   },
   app: {
+    rootId: 'main',
     head: {
       htmlAttrs: {
         lang: 'pl'
@@ -89,13 +98,6 @@ export default defineNuxtConfig({
           href: '/favicon/favicon-16x16.png'
         }
       ]
-    }
-  },
-  runtimeConfig: {
-    apiSecret: process.env.API_SECRET,
-    public: {
-      websiteName: process.env.APP_NAME,
-      apiBase: process.env.API_BASE
     }
   },
   i18n: {

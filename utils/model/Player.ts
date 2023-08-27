@@ -5,7 +5,7 @@ export class Player {
     height
     position
 
-    constructor(player: _Player) {
+    constructor(player: PlayerType) {
         this.name = player.name ? player.name : 'Imię'
         this.lastname = player.lastname ? player.lastname : 'Nazwisko'
         this.number = player.number ? player.number : 99
@@ -48,8 +48,8 @@ class Position {
         this.short = position?.short
     }
 
-    getPositionByIndex(index: number): _Position | undefined {
-        const positionList: _Position[] = [
+    getPositionByIndex(index: number): PositionType | undefined {
+        const positionList: PositionType[] = [
             { index: 0, short: 'PG' },
             { index: 1, short: 'SG' },
             { index: 2, short: 'SF' },
@@ -61,20 +61,20 @@ class Position {
     }
 }
 
-export type _Player = {
-    name: String,
-    lastname: String,
+export type PlayerType = {
+    name: string,
+    lastname: string,
     number: number,
-    height: _Height,
-    position: _Position
+    height: HeightType,
+    position: PositionType
 }
 
-type _Height = {
+type HeightType = {
     cm: number,
-    in: String
+    in: string
 }
 
-type _Position = {
+type PositionType = {
     index: number,
-    short: String
+    short: string
 }

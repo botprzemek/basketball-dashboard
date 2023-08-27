@@ -29,17 +29,19 @@
     "@nuxt/devtools": "latest",
     "@nuxt/image": "^1.0.0-rc.1",
     "@nuxtjs/i18n": "^8.0.0-rc.3",
-    "@nuxtjs/pwa": "^3.3.5",
     "@nuxtjs/tailwindcss": "^6.8.0",
+    "@nuxtjs/pwa": "^3.3.5",
     "@splinetool/loader": "^0.9.428",
     "@types/node": "^18.17.3",
     "@types/three": "^0.155.1",
     "@vueuse/core": "^10.4.0",
     "@vueuse/nuxt": "^10.4.0",
+    "autoprefixer": "^10.4.15",
     "nuxt": "^3.6.5",
+    "postcss": "^8.4.28",
     "three": "^0.155.0"
   },
-  "dependencies": {
-    "@splinetool/runtime": "^0.9.428"
+  "resolutions": {
+    "@nuxt/kit": "3.6.5"
   }
 }
