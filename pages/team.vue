@@ -6,18 +6,30 @@ useHead({
   title: t(`path.${useRouter().currentRoute.value.name.split('___')[0]}`)
 })
 
-let { data: players, pending, error } = await useFetch('/api/players')
+let { data: teams, error } = await useFetch('/api/teams')
 </script>
 
 <template>
-  <h1>{{ $t(`path.${$route.name.split('___')[0]}`) }}</h1>
+  <h1>{{ $t(`path.${$route.name.split('___')[0]}`) }}</h1>Team I
+  Team II
+  Statystyki indywidualne
+  Statystyki drużynowe
   <ul>
-    <li v-for="player in players" :key="player.lastname">
-      <p>{{ player['lastname'] }}</p>
-      <p>{{ player.name }}</p>
-      <p>Nr {{ player.number }}</p>
-      <p>{{ `${player.height.in}`.replaceAll('.', `'`) }}" / {{ player.height.cm }}cm</p>
-      <p>Pozycja {{ player.position.short }}</p>
+    <li v-for="team in teams" :key="team.name">
+      <p>{{ team.name }}</p>
+      <p>{{ team.city }}</p>
+      <p>{{ team.league }}</p>
+      <p>Players</p>
+      <ul>
+        <li v-for="player in team.players" :key="player.lastname">
+          <p>{{ player.lastname }}</p>
+          <p>{{ player.name }}</p>
+          <p>No {{ player.number }}</p>
+          <p>{{ player.height }}cm</p>
+          <p>Position {{ player.position }}</p>
+          <p>Age {{ new Date().getFullYear() - new Date(player.age).getFullYear() }}</p>
+        </li>
+      </ul>
     </li>
   </ul>
 </template>

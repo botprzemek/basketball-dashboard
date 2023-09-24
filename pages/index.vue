@@ -7,5 +7,13 @@ useHead({
 </script>
 
 <template>
-  <h1>{{ $t(`welcome`) }}</h1>
+  <h1>{{ $t(`path.${$route.name.split('___')[0]}`) }}</h1>
+  Terminarz
+  Zespół
+  Merch
+  Aktualności
+  O nas
+  Partnerstwo
+  Media
+  Kontakt
 </template>

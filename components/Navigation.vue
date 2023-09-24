@@ -1,8 +1,9 @@
 <script setup lang="ts">
+const router = useRouter()
 const { locale, locales } = useI18n()
 const localePath = useLocalePath()
 const switchLocalePath = useSwitchLocalePath()
-const paths = [ 'index', 'team', 'news', 'media', 'contact' ]
+const paths = [ 'index', 'schedule', 'team', 'merch', 'news', 'about', 'support', 'partnership', 'media', 'contact' ]
 
 useHead({
   htmlAttrs: {
@@ -12,8 +13,8 @@ useHead({
 </script>
 <template>
   <header class="relative z-50">
-    <nav>
-      <ul>
+    <nav class="w-screen grid place-content-center">
+      <ul class="w-full flex gap-4">
         <li v-for="path in paths" :key="path"><NuxtLink :to="localePath(path)" style="text-decoration: none; color: white">{{ $t(`path.${path}`).replaceAll('Strona g', 'G') }}</NuxtLink></li>
       </ul>
     </nav>

@@ -8,8 +8,5 @@ useHead({
 
 <template>
   <h1>{{ $t(`path.${$route.name.split('___')[0]}`) }}</h1>
-  Do pobrania
-  Logo
-  Wersje
-  <a href="/api/files/logo/ai">Download</a>
+  Formularz
 </template>

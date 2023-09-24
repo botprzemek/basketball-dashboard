@@ -113,6 +113,10 @@ export default defineNuxtConfig({
     ],
     customRoutes: 'config',
     pages: {
+      about: {
+        pl: '/o-nas',
+        en: '/about'
+      },
       contact: {
         pl: '/kontakt',
         en: '/contact'
@@ -125,9 +129,25 @@ export default defineNuxtConfig({
         pl: '/media',
         en: '/media'
       },
+      merch: {
+        pl: '/merch',
+        en: '/merch'
+      },
       news: {
         pl: '/aktualnosci',
         en: '/news'
+      },
+      partnership: {
+        pl: '/partnerstwo',
+        en: '/partnership'
+      },
+      schedule: {
+        pl: '/terminarz',
+        en: '/schedule'
+      },
+      support: {
+        pl: '/wsparcie',
+        en: '/support'
       },
       team: {
         pl: '/zespol',
