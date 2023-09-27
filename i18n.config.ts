@@ -14,7 +14,34 @@ export default defineI18nConfig(() => ({
                 schedule: 'Terminarz',
                 support: 'Wsparcie',
                 team: 'Zespół'
-            }
+            },
+            links: {
+                title: {
+                    contact: 'Kontakt',
+                    about: 'Knury',
+                    social: 'Sociale'
+                },
+                child: {
+                    contact: {
+                        reach: 'Dane kontaktowe',
+                        form: 'Formularz',
+                        join: 'Dołącz do nas',
+                        partnership: 'Partnerstwo'
+                    },
+                    about: {
+                        about: 'O nas',
+                        privacy: 'Prywatność',
+                        team: 'Nasz zespół',
+                        support: 'Wsparcie'
+                    },
+                    social: {
+                        facebook: 'Facebook',
+                        instagram: 'Instagram',
+                        tiktok: 'TikTok',
+                        youtube: 'Youtube'
+                    }
+                },
+            },
         },
         en: {
             path: {
@@ -28,7 +55,7 @@ export default defineI18nConfig(() => ({
                 schedule: 'Schedule',
                 support: 'Support',
                 team: 'Team'
-            }
+            },
         }
     }
 }))

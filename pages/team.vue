@@ -6,11 +6,12 @@ useHead({
   title: t(`path.${useRouter().currentRoute.value.name.split('___')[0]}`)
 })
 
-let { data: teams, error } = await useFetch('/api/teams')
+let { data: teams } = await useFetch('/api/teams')
 </script>
 
 <template>
-  <h1>{{ $t(`path.${$route.name.split('___')[0]}`) }}</h1>Team I
+  <h1>{{ $t(`path.${$route.name.split('___')[0]}`) }}</h1>
+  Team I
   Team II
   Statystyki indywidualne
   Statystyki drużynowe
@@ -22,8 +23,8 @@ let { data: teams, error } = await useFetch('/api/teams')
       <p>Players</p>
       <ul>
         <li v-for="player in team.players" :key="player.lastname">
-          <p>{{ player.lastname }}</p>
           <p>{{ player.name }}</p>
+          <p>{{ player.lastname }}</p>
           <p>No {{ player.number }}</p>
           <p>{{ player.height }}cm</p>
           <p>Position {{ player.position }}</p>

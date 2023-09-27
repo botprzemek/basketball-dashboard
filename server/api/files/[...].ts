@@ -1,6 +1,8 @@
-const config = useRuntimeConfig()
+import { RuntimeConfig } from 'nuxt/schema'
 
-export default defineEventHandler(async (event): Promise<Response>  => {
+const config: RuntimeConfig = useRuntimeConfig()
+
+export default defineEventHandler(async (event): Promise<any>  => {
     // @ts-ignore
     return fetch(`${config.public.apiBase}/files/${event.context.params._}`, {
         headers: {

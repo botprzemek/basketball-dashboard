@@ -1,6 +1,13 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
-  $production: undefined,
+  $production: {},
+  $development: {
+    routeRules: {
+      '/**': {
+        ssr: false
+      }
+    }
+  },
   devtools: {
     enabled: true
   },
@@ -35,7 +42,8 @@ export default defineNuxtConfig({
     }
   },
   app: {
-    rootId: 'main',
+    rootId: 'app',
+    rootTag: 'main',
     head: {
       htmlAttrs: {
         lang: 'pl'

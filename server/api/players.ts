@@ -8,6 +8,6 @@ export default defineEventHandler(async (): Promise<any> => {
             secret: config.apiSecret
         }
     }
-    const data: Response = await fetch(`${config.public.apiBase}/teams/${config.public.websiteName}`, options)
+    const data: Response = await fetch(`${config.public.apiBase}/players`, options)
     return (data) ? await data.json() : null
 })
