@@ -4,16 +4,26 @@ const input = {
   password: '',
 }
 
+const email = useCookie('email', {
+  httpOnly: true,
+})
+const token = useCookie('token', {
+  httpOnly: true,
+})
+
 async function login () {
   const { data: response } = await useFetch('/api/auth/login', {
     method: 'POST',
     body: input,
   })
 
-  if (!response || !response.value) return
-  if (response.value.status !== 200 && response.value.cookies === '') return
+  console.log(response.value)
 
-  document.cookie = response.value.cookies
+  if (!response || !response.value) return
+
+  email.value = response.value.email
+  token.value = response.value.token
+
   navigateTo('./match')
 }
 </script>
