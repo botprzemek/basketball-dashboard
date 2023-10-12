@@ -3,6 +3,10 @@ export default defineI18nConfig(() => ({
     locale: 'pl',
     messages: {
         pl: {
+            static: {
+                copyright: 'Wszelkie prawa zastrzeżone',
+                map: 'Mapa strony',
+            },
             path: {
                 about: 'O nas',
                 contact: 'Kontakt',
@@ -45,8 +49,12 @@ export default defineI18nConfig(() => ({
             },
         },
         en: {
+            static: {
+                copyright: 'All rights reserved',
+                map: 'Site map',
+            },
             path: {
-                about: 'About us',
+                about: 'About',
                 contact: 'Contact',
                 index: 'Home',
                 media: 'Media',
@@ -57,6 +65,33 @@ export default defineI18nConfig(() => ({
                 schedule: 'Schedule',
                 support: 'Support',
                 team: 'Team'
+            },
+            links: {
+                title: {
+                    contact: 'Contact',
+                    about: 'Knury',
+                    social: 'Socials'
+                },
+                child: {
+                    contact: {
+                        reach: 'Reach us',
+                        form: 'Form',
+                        join: 'Join us',
+                        partnership: 'Partnership'
+                    },
+                    about: {
+                        about: 'About us',
+                        privacy: 'Privacy',
+                        team: 'Our team',
+                        support: 'Support'
+                    },
+                    social: {
+                        facebook: 'Facebook',
+                        instagram: 'Instagram',
+                        tiktok: 'TikTok',
+                        youtube: 'Youtube'
+                    }
+                },
             },
         }
     }

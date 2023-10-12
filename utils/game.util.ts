@@ -1,3 +1,5 @@
+import Game from "~/utils/model/game.model";
+
 export const format = (sec: number): string => {
     if (!sec) return '00:00'
     const min: number = Math.floor(sec / 60)
@@ -8,44 +10,16 @@ export const format = (sec: number): string => {
     return `${newMin}:${newSec}`
 }
 
-export const game = (socket: any): void => {
-    socket.on("connect_error", (err: any): void => {
-        console.log(`connection error due to ${err.message}`);
-    });
-
-    socket.on('initialData', (data: any): void => {
-        document.getElementById('gameTime').textContent = format(data.time)
-        document.getElementById('quarter').textContent = data.quarter ? data.quarter : 'End of regulation'
-        document.getElementById('status').textContent = data.status ? 'Started' : 'Ended'
-    })
-
-    socket.on('updateData', (data: any): void => {
-        document.querySelector('.scoreHost').textContent = data.scoreHost
-        document.querySelector('.scoreOpponent').textContent = data.scoreOpponent
-        document.getElementById('gameTime').textContent = format(data.time)
-        document.getElementById('quarter').textContent = data.quarter ? data.quarter : 'End of regulation'
-        document.getElementById('status').textContent = data.status ? 'Started' : 'Ended'
-    })
-
-    socket.on('updateScore', (data: any): void => {
-        document.querySelector('.scoreHost').textContent = data.scoreHost
-        document.querySelector('.scoreOpponent').textContent = data.scoreOpponent
-    })
-
-    socket.on('updateTimer', (data: any): void => {
-        document.getElementById('gameTime').textContent = format(data.time)
-        document.getElementById('quarter').textContent = data.quarter ? data.quarter : 4
-        document.getElementById('status').textContent = data.status ? 'Started' : 'End of regulation'
-        document.getElementById('paused').textContent = data.paused ? 'Paused' : 'Playing'
+export const gameAdmin = (socket: any): void => {
+    socket.on('connect_error', (err: any): void => {
+        console.log(`connection error due to ${err.message}`)
     })
 
     document.getElementById('changeStatus').addEventListener('click', (): void => {
-        if (document.getElementById('status').textContent === 'End of regulation') return
         socket.emit('changeStatus')
     })
 
     document.getElementById('pauseGame').addEventListener('click', (): void => {
-        if (document.getElementById('status').textContent !== 'Started') return
         socket.emit('pauseGame')
     })
 
@@ -60,4 +34,44 @@ export const game = (socket: any): void => {
             socket.emit('updateScore', { scoreHost: 0, scoreOpponent: element.value })
         }),
     )
+}
+
+export const gameClient = (socket: any): void => {
+    socket.on('connect_error', (err: any): void => {
+        console.log(`connection error due to ${err.message}`)
+    })
+
+    socket.on('initialData', (data: Game): void => {
+        document.querySelector('.scoreHost').textContent = data.scoreHost
+        document.querySelector('.scoreOpponent').textContent = data.scoreOpponent
+        document.getElementById('gameTime').textContent = format(data.time)
+        document.getElementById('quarter').textContent = data.quarter ? data.quarter : 'End of regulation'
+        document.getElementById('status').textContent = data.status ? 'Started' : 'Ended'
+    })
+
+    socket.on('updateData', (data: Game): void => {
+        document.querySelector('.scoreHost').textContent = data.scoreHost
+        document.querySelector('.scoreOpponent').textContent = data.scoreOpponent
+        document.getElementById('gameTime').textContent = format(data.time)
+        document.getElementById('quarter').textContent = data.quarter ? data.quarter : 'End of regulation'
+        document.getElementById('status').textContent = data.status ? 'Started' : 'Ended'
+    })
+
+    socket.on('updateScore', (data: Game): void => {
+        document.querySelector('.scoreHost').textContent = data.scoreHost
+        document.querySelector('.scoreOpponent').textContent = data.scoreOpponent
+    })
+
+    socket.on('updateQuarter', (data: Game): void => {
+        document.getElementById('gameTime').textContent = format(data.time)
+        document.getElementById('quarter').textContent = data.quarter ? data.quarter : 4
+    })
+
+    socket.on('updateTimer', (data: Game): void => {
+        document.getElementById('gameTime').textContent = format(data.time)
+    })
+
+    socket.on('pauseGame', (data: Game): void => {
+        document.getElementById('paused').textContent = data.paused ? 'Paused' : 'Playing'
+    })
 }

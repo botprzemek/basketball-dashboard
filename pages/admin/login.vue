@@ -4,22 +4,24 @@ const input = {
   password: '',
 }
 
-const email = useCookie('email', {
-  httpOnly: true,
-})
-const token = useCookie('token', {
-  httpOnly: true,
-})
-
 async function login () {
   const { data: response } = await useFetch('/api/auth/login', {
     method: 'POST',
     body: input,
   })
 
-  console.log(response.value)
-
   if (!response || !response.value) return
+
+  const email = useCookie('email', {
+    secure: true,
+    maxAge: 3600,
+    sameSite: true,
+  })
+  const token = useCookie('token', {
+    secure: true,
+    maxAge: 3600,
+    sameSite: true,
+  })
 
   email.value = response.value.email
   token.value = response.value.token

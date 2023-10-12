@@ -15,7 +15,8 @@ useHead({
   <footer class="mt-auto">
     <nav class="w-screen grid place-content-center">
       <h6>Knury Knurów</h6>
-      <p>Copyright © {{ new Date().getFullYear() }} - Knury Knurów</p>
+      <p>{{ $t('static.copyright') }} © {{ new Date().getFullYear() }} - Knury Knurów</p>
+      <a>Mapa strony</a>
       <ul class="w-full flex gap-4">
         <li v-for="title in Object.keys(links)" :key="title">
           {{ $t(`links.title.${title}`) }}

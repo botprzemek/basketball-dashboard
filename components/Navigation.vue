@@ -10,6 +10,16 @@ useHead({
     lang: locale.value
   },
 })
+
+const login = () => {
+  return navigateTo('/admin/login')
+}
+
+const logout = () => {
+  useCookie('email').value = null
+  useCookie('token').value = null
+  if (useRoute().path.startsWith('/admin')) return navigateTo('/admin/login')
+}
 </script>
 
 <template>
@@ -20,5 +30,7 @@ useHead({
       </ul>
     </nav>
     <NuxtLink :to="switchLocalePath(locale.code)" v-for="locale in locales" :key="locale" style="text-decoration: none; color: white">{{ locale.name }}</NuxtLink>
+    <button v-if="(useCookie('email').value)" @click="logout">Logout</button>
+    <button v-else @click="login">Login</button>
   </header>
 </template>
