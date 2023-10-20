@@ -1,13 +1,13 @@
 <script setup lang="ts">
 const { t } = useI18n({ useScope: 'global' })
 
-useHeadSafe({
+useHead({
   title: t(`path.${useRouter().currentRoute.value.name.split('___')[0]}`)
 })
 </script>
 
 <template>
-  <h1>{{ $t(`path.${$route.name.split('___')[0]}`) }}</h1>
-  Zrzutka
-  Partnerstwo
+  <ul>
+    <li>xD</li>
+  </ul>
 </template>

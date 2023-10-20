@@ -1,6 +1,6 @@
-<script setup>
+<script setup lang="ts">
 import { io } from 'socket.io-client'
-import {gameAdmin} from '~/utils/game.util'
+import {gameAdmin} from '~/utils/socket/game.socket'
 
 definePageMeta({
   middleware: [
@@ -8,13 +8,19 @@ definePageMeta({
   ],
 })
 
+const { t } = useI18n({ useScope: 'global' })
+const token = useCookie('token').value
+
+useHeadSafe({
+  title: t(`path.${useRouter().currentRoute.value.name.split('___')[0].replaceAll('-', '.')}`)
+})
+
 onMounted(() => {
   const socket = io('http://localhost:3001/admin', {
     secure: true,
     rejectUnauthorized: true,
     auth: {
-      email: useCookie('email').value,
-      token: useCookie('token').value,
+      token: token,
     },
   })
   gameAdmin(socket)

@@ -5,10 +5,14 @@ export default defineI18nConfig(() => ({
         pl: {
             static: {
                 copyright: 'Wszelkie prawa zastrzeżone',
-                map: 'Mapa strony',
+                sitemap: 'Mapa strony',
             },
             path: {
                 about: 'O nas',
+                admin: {
+                  login: 'Logowanie',
+                  match: 'Zarządzanie Meczem',
+                },
                 contact: 'Kontakt',
                 index: 'Strona główna',
                 media: 'Media',
@@ -17,8 +21,9 @@ export default defineI18nConfig(() => ({
                 news: 'Aktualności',
                 partnership: 'Partnerstwo',
                 schedule: 'Terminarz',
+                sitemap: 'Mapa Strony',
                 support: 'Wsparcie',
-                team: 'Zespół'
+                team: 'Zespół',
             },
             links: {
                 title: {
@@ -51,10 +56,14 @@ export default defineI18nConfig(() => ({
         en: {
             static: {
                 copyright: 'All rights reserved',
-                map: 'Site map',
+                sitemap: 'Site map',
             },
             path: {
                 about: 'About',
+                admin: {
+                    login: 'Login',
+                    match: 'Match Dashboard',
+                },
                 contact: 'Contact',
                 index: 'Home',
                 media: 'Media',
@@ -63,6 +72,7 @@ export default defineI18nConfig(() => ({
                 news: 'News',
                 partnership: 'Partnership',
                 schedule: 'Schedule',
+                sitemap: 'Site Map',
                 support: 'Support',
                 team: 'Team'
             },

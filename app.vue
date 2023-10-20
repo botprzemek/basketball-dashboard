@@ -1,13 +1,18 @@
 <script setup lang="ts">
 const config = useRuntimeConfig()
-useHead({
-  titleTemplate: (titleChunk) => {
-    return titleChunk
-      ? `${titleChunk} · ${config.public.websiteName}`
-      : config.public.websiteName
+const { locale } = useI18n()
+
+useHeadSafe({
+  htmlAttrs: {
+    lang: locale.value
   },
   bodyAttrs: {
     class: 'min-h-screen max-h-max min-w-screen max-w-screen'
+  },
+  titleTemplate: (titleChunk) => {
+    return titleChunk
+        ? `${titleChunk} · ${config.public.websiteName}`
+        : config.public.websiteName
   }
 })
 
@@ -24,6 +29,7 @@ useSeoMeta({
 </script>
 
 <template>
+  <VitePwaManifest />
   <main class="min-h-screen max-h-max min-w-screen max-w-screen flex flex-col">
     <NuxtLayout>
       <NuxtPage/>

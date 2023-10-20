@@ -27,24 +27,26 @@
   },
   "devDependencies": {
     "@nuxt/devtools": "latest",
-    "@nuxt/image": "^1.0.0-rc.1",
+    "@nuxt/image": "^1.0.0",
+    "@nuxtjs/eslint-module": "^4.1.0",
     "@nuxtjs/i18n": "^8.0.0-rc.3",
     "@nuxtjs/pwa": "^3.3.5",
     "@nuxtjs/tailwindcss": "^6.8.0",
     "@splinetool/loader": "^0.9.428",
     "@types/node": "^18.17.3",
     "@types/three": "^0.155.1",
+    "@vite-pwa/nuxt": "^0.1.1",
     "@vueuse/core": "^10.4.0",
     "@vueuse/nuxt": "^10.4.0",
     "autoprefixer": "^10.4.15",
-    "nuxt": "^3.6.5",
+    "eslint-plugin-vue": "^9.17.0",
+    "nuxt": "^3.8.0",
+    "nuxt-simple-sitemap": "^3.4.0",
     "postcss": "^8.4.28",
+    "socket.io-client": "^4.7.2",
     "three": "^0.155.0"
   },
   "resolutions": {
     "@nuxt/kit": "3.6.5"
-  },
-  "dependencies": {
-    "socket.io-client": "^4.7.2"
   }
 }

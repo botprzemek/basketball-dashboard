@@ -1,33 +1,15 @@
 <script setup lang="ts">
+import login from '~/utils/auth/login.auth'
+
+const { t } = useI18n({ useScope: 'global' })
 const input = {
   email: '',
   password: '',
 }
 
-async function login () {
-  const { data: response } = await useFetch('/api/auth/login', {
-    method: 'POST',
-    body: input,
-  })
-
-  if (!response || !response.value) return
-
-  const email = useCookie('email', {
-    secure: true,
-    maxAge: 3600,
-    sameSite: true,
-  })
-  const token = useCookie('token', {
-    secure: true,
-    maxAge: 3600,
-    sameSite: true,
-  })
-
-  email.value = response.value.email
-  token.value = response.value.token
-
-  navigateTo('./match')
-}
+useSeoMeta({
+  title: t(`path.${useRouter().currentRoute.value.name.split('___')[0].replaceAll('-', '.')}`)
+})
 </script>
 
 <template>
@@ -37,6 +19,6 @@ async function login () {
     <input v-model="input.email" type="email">
     <label>Password</label>
     <input v-model="input.password"  type="password">
-    <button @click="login">Login</button>
+    <button @click="login(input)">Login</button>
   </form>
 </template>

@@ -3,7 +3,7 @@ export default defineNuxtConfig({
   $production: {},
   $development: {
     routeRules: {
-      '/**': {
+      '/dev': {
         ssr: false
       }
     }
@@ -14,10 +14,10 @@ export default defineNuxtConfig({
   modules: [
     '@nuxtjs/tailwindcss',
     '@nuxtjs/i18n',
+    '@nuxt/image',
     '@vueuse/nuxt',
-  ],
-  buildModules: [
-    '@nuxtjs/pwa',
+    '@vite-pwa/nuxt',
+    'nuxt-simple-sitemap'
   ],
   runtimeConfig: {
     apiSecret: process.env.API_SECRET,
@@ -27,18 +27,33 @@ export default defineNuxtConfig({
     }
   },
   pwa: {
+    registerType: 'autoUpdate',
     manifest: {
       name: 'Knury Knurów',
       short_name: 'Knury',
       description: 'Strona drużyny koszykarskiej Knury Knurów. Inicjatywa wytrwałej młodzieży z ambicjami. Nasza społeczność wciąż się rozrasta, co pozwala nam cieszyć się z gry na boisku i poza nim.',
-      background_color: '#1d1d1d',
       lang: 'pl',
       display: 'standalone',
-    },
-    meta: {
-      'apple-mobile-web-app-capable': true,
+      background_color: '#1d1d1d',
       theme_color: '#1d1d1d',
-      lang: 'pl',
+      icons: [
+        {
+          src: '/favicon/favicon-192x192.png',
+          sizes: '192x192',
+          type: 'image/png',
+        },
+        {
+          src: '/favicon/favicon-512x512.png',
+          sizes: '512x512',
+          type: 'image/png',
+        },
+        {
+          src: '/favicon/favicon-512x512-maskable.png',
+          sizes: '512x512',
+          type: 'image/png',
+          purpose: 'any maskable',
+        }
+      ]
     }
   },
   app: {
@@ -51,10 +66,6 @@ export default defineNuxtConfig({
       charset: 'utf-8',
       viewport: 'width=device-width, initial-scale=1',
       meta: [
-        {
-          'http-equiv': 'X-UA-Compatible',
-          content: 'IE=edge'
-        },
         {
           name: 'description',
           content: 'Strona drużyny koszykarskiej Knury Knurów. Inicjatywa wytrwałej młodzieży z ambicjami. Nasza społeczność wciąż się rozrasta, co pozwala nam cieszyć się z gry na boisku i poza nim.'
@@ -74,19 +85,21 @@ export default defineNuxtConfig({
         {
           name: 'color-scheme',
           content: 'dark'
-        }
-      ],
-      script: [
+        },
         {
-          type: 'module',
-          src: 'https://unpkg.com/@splinetool/viewer@0.9.428/build/spline-viewer.js'
+          'http-equiv': 'X-UA-Compatible',
+          content: 'IE=edge'
         }
       ],
       link: [
         {
+          rel: 'theme-color',
+          color: '#1d1d1d'
+        },
+        {
           rel: 'icon',
           type: 'image/x-icon',
-          href: 'favicon/favicon.ico'
+          href: '/favicon/favicon.ico'
         },
         {
           rel: 'apple-touch-icon',
@@ -109,6 +122,8 @@ export default defineNuxtConfig({
     }
   },
   i18n: {
+    baseUrl: 'http://localhost:3000',
+    defaultLocale: 'pl',
     locales: [
       {
         code: 'pl',
@@ -125,6 +140,18 @@ export default defineNuxtConfig({
         pl: '/o-nas',
         en: '/about'
       },
+      'admin/login': {
+        pl: '/panel/logowanie',
+        en: '/admin/login'
+      },
+      'admin/match': {
+        pl: '/panel/mecz',
+        en: '/admin/match'
+      },
+      'admin/verify': {
+        pl: '/panel/weryfikacja',
+        en: '/admin/verify'
+      },
       contact: {
         pl: '/kontakt',
         en: '/contact'
@@ -132,6 +159,10 @@ export default defineNuxtConfig({
       index: {
         pl: '/',
         en: '/'
+      },
+      match: {
+        pl: '/mecz',
+        en: '/match'
       },
       media: {
         pl: '/media',
@@ -153,6 +184,10 @@ export default defineNuxtConfig({
         pl: '/terminarz',
         en: '/schedule'
       },
+      sitemap: {
+        pl: '/mapa',
+        en: '/sitemap'
+      },
       support: {
         pl: '/wsparcie',
         en: '/support'
@@ -162,6 +197,5 @@ export default defineNuxtConfig({
         en: '/team'
       },
     },
-    defaultLocale: 'pl'
   }
 })
