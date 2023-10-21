@@ -12,7 +12,7 @@
     "generate": "nuxt generate",
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare",
-    "serve": "node .output/sever/index.mjs",
+    "serve": "node .output/sever/index.mjs"
   },
   "repository": {
     "type": "git",
