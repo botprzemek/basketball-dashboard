@@ -1,4 +1,5 @@
 <script setup lang="ts">
+const localePath = useLocalePath()
 const { t } = useI18n({ useScope: 'global' })
 
 useHeadSafe({
@@ -8,12 +9,15 @@ useHeadSafe({
 
 <template>
   <h1>{{ $t(`path.${$route.name.split('___')[0]}`) }}</h1>
-  Terminarz
-  Zespół
-  Merch
-  Aktualności
-  O nas
-  Partnerstwo
-  Media
-  Kontakt
+  <NuxtLink :to="localePath('match')">
+    {{ t(`path.match`) }}
+  </NuxtLink>
+<!--  Terminarz-->
+<!--  Zespół-->
+<!--  Merch-->
+<!--  Aktualności-->
+<!--  O nas-->
+<!--  Partnerstwo-->
+<!--  Media-->
+<!--  Kontakt-->
 </template>

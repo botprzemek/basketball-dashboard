@@ -3,7 +3,7 @@ import { io } from 'socket.io-client'
 import { gameClient } from '~/utils/socket/game.socket'
 
 onMounted(() => {
-  const socket = io('http://localhost:3001', { secure: true })
+  const socket = io(useRuntimeConfig().public.apiBase, { secure: true })
   gameClient(socket)
 })
 </script>

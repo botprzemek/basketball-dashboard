@@ -1,13 +1,18 @@
 {
-  "name": "nuxt-app",
+  "name": "basketball-website",
   "version": "1.0.0",
+  "description": "Basketball website",
+  "engines": {
+    "node": ">=v20.2.0"
+  },
   "private": true,
   "scripts": {
     "build": "nuxt build",
     "dev": "nuxt dev",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
-    "postinstall": "nuxt prepare"
+    "postinstall": "nuxt prepare",
+    "serve": "node .output/sever/index.mjs",
   },
   "repository": {
     "type": "git",

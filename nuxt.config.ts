@@ -9,7 +9,7 @@ export default defineNuxtConfig({
     }
   },
   devtools: {
-    enabled: true
+    enabled: false
   },
   modules: [
     '@nuxtjs/tailwindcss',
@@ -198,4 +198,4 @@ export default defineNuxtConfig({
       },
     },
   }
-})
+});

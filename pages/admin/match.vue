@@ -16,7 +16,7 @@ useHeadSafe({
 })
 
 onMounted(() => {
-  const socket = io('http://localhost:3001/admin', {
+  const socket = io(`${useRuntimeConfig().public.apiBase}/admin`, {
     secure: true,
     rejectUnauthorized: true,
     auth: {
