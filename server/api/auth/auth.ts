@@ -1,4 +1,4 @@
-import { RuntimeConfig } from 'nuxt/schema'
+import type { RuntimeConfig } from 'nuxt/schema'
 import { H3Event } from 'h3'
 
 const config: RuntimeConfig = useRuntimeConfig()
