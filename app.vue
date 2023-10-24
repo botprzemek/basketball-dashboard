@@ -16,8 +16,10 @@ useHeadSafe({
   }
 })
 
+
+
 useSeoMeta({
-  ogTitle: '[og:title]',
+  ogTitle: config.public.websiteName,
   ogDescription: '[og:description]',
   ogImage: '[og:image]',
   ogUrl: '[og:url]',

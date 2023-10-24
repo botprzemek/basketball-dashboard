@@ -45,9 +45,17 @@ export const gameAdmin = (socket: any): void => {
 }
 
 export const gameClient = (socket: any): void => {
-    socket.on('connect_error', (err: any): void => {
-        console.log(`connection error due to ${err.message}`)
+    let disconnected: boolean = false
+
+    socket.on('connect_error', (error: any): void => {
+        if (disconnected) {
+            socket.disconnect()
+            return
+        }
+        disconnected = true
     })
+
+    if (disconnected) return
 
     socket.on('initialData', (data: Game): void => {
         // @ts-ignore
