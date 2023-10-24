@@ -11,10 +11,12 @@ export default async (input: { email: string, password: string }) => {
         return
     }
 
+    const date = new Date()
+
     const token = useCookie('token', {
         secure: true,
         sameSite: true,
-        maxAge: 7200,
+        maxAge: date.setHours(date.getHours() + 2),
     })
 
     token.value = response.value.token
