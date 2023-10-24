@@ -14,7 +14,7 @@ export default async (input: { email: string, password: string }) => {
     const token = useCookie('token', {
         secure: true,
         sameSite: true,
-        maxAge: 60 * 60,
+        maxAge: 7200,
     })
 
     token.value = response.value.token
