@@ -29,9 +29,9 @@ useSeoMeta({
 </script>
 
 <template>
-  <VitePwaManifest />
   <main class="min-h-screen max-h-max min-w-screen max-w-screen flex flex-col">
     <NuxtLayout>
+      <VitePwaManifest />
       <NuxtPage/>
     </NuxtLayout>
   </main>
