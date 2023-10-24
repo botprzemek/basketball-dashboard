@@ -33,7 +33,7 @@ useSeoMeta({
 <template>
   <main class="min-h-screen max-h-max min-w-screen max-w-screen flex flex-col">
     <NuxtLayout>
-<!--      <VitePwaManifest />-->
+      <VitePwaManifest />
       <NuxtPage/>
     </NuxtLayout>
   </main>
