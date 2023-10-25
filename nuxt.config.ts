@@ -23,8 +23,9 @@ export default defineNuxtConfig({
     apiSecret: process.env.API_SECRET,
     public: {
       websiteName: process.env.APP_NAME,
-      apiBase: process.env.API_BASE
-    }
+      apiBase: process.env.API_BASE,
+      websocketBase: process.env.WEBSOCKET_BASE,
+    },
   },
   pwa: {
     registerType: 'autoUpdate',

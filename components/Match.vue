@@ -3,7 +3,7 @@ import { io } from 'socket.io-client'
 import { gameClient } from '~/utils/socket/game.socket'
 
 onMounted(() => {
-  const socket = io(useRuntimeConfig().public.apiBase, {
+  const socket = io(useRuntimeConfig().public.websocketBase, {
     secure: true,
   })
   gameClient(socket)
