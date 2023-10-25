@@ -29,6 +29,7 @@ export default defineNuxtConfig({
   },
   pwa: {
     registerType: 'autoUpdate',
+    strategies: 'generateSW',
     manifest: {
       name: 'Knury Knurów',
       short_name: 'Knury',
@@ -59,8 +60,8 @@ export default defineNuxtConfig({
     workbox: {
       clientsClaim: true,
       skipWaiting: true,
-      navigateFallback: '/',
-      globPatterns: ['**/*.{js,css,html,png,svg,ico}'],
+      navigateFallback: null,
+      globPatterns: ['**/*.{js,css}'],
     }
   },
   app: {
