@@ -6,9 +6,7 @@ export default async (input: { email: string, password: string }) => {
         body: input,
     })
 
-    if (!response || !response.value || status.value !== "success") {
-        return
-    }
+    if (!response || !response.value || !response.value.token || status.value !== "success") return
 
     const token = useCookie('token', {
         secure: true,
