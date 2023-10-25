@@ -43,6 +43,4 @@ onMounted(() => {
   <h3>Time</h3>
   <button id="changeStatus">Change Status</button>
   <button id="pauseGame">Pause</button>
-
-  <Match/>
 </template>
