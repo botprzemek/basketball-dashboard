@@ -1,14 +1,12 @@
 export default async (input: { email: string, password: string }) => {
     if (!input || !input.email || !input.password) return
 
-    const { data: response } = await useFetch('/api/auth/login', {
+    const { data: response, status } = await useFetch('/api/auth/login', {
         method: 'POST',
         body: input,
     })
 
-    console.log(response)
-
-    if (!response|| !response.value || response.value.status !== 200) {
+    if (!response || !response.value || status.value !== "success") {
         return
     }
 
@@ -18,7 +16,7 @@ export default async (input: { email: string, password: string }) => {
         maxAge: 3600,
     })
 
-    token.value = response.value.json().token
+    token.value = response.value.token
 
     const { $localePath } = useNuxtApp()
 
