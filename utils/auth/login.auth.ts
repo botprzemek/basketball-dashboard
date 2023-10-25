@@ -6,12 +6,12 @@ export default async (input: { email: string, password: string }) => {
         body: input,
     })
 
+    console.log(response)
+
     if (!response || !response.value || !response.value.token) {
         console.log('Login failed')
         return
     }
-
-    const date = new Date()
 
     const token = useCookie('token', {
         secure: true,
