@@ -5,7 +5,6 @@ import { gameClient } from '~/utils/socket/game.socket'
 onMounted(() => {
   const socket = io(useRuntimeConfig().public.apiBase, {
     secure: true,
-    transports: [ "websocket" ]
   })
   gameClient(socket)
 })

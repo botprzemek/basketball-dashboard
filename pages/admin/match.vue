@@ -18,7 +18,6 @@ useHeadSafe({
 onMounted(() => {
   const socket = io(`${useRuntimeConfig().public.apiBase}/admin`, {
     secure: true,
-    transports: [ "websocket" ],
     rejectUnauthorized: true,
     auth: {
       token: token,

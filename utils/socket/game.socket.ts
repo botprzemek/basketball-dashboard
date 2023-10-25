@@ -11,13 +11,18 @@ export const format = (sec: number): string => {
 }
 
 export const gameAdmin = (socket: any): void => {
-    socket.on('connected', (err: any): void => {
-        console.log(`connection error due to ${err.message}`)
+    let disconnected: boolean = false
+
+    socket.on('connect_error', (error: any): void => {
+        if (disconnected) {
+            socket.disconnect()
+            return
+        }
+        console.log(error)
+        disconnected = true
     })
 
-    socket.on('connect_error', (err: any): void => {
-        console.log(`connection error due to ${err.message}`)
-    })
+    if (disconnected) return
 
     // @ts-ignore
     document.getElementById('changeStatus').addEventListener('click', (): void => {
@@ -52,6 +57,7 @@ export const gameClient = (socket: any): void => {
             socket.disconnect()
             return
         }
+        console.log(error)
         disconnected = true
     })
 
