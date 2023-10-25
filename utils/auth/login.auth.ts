@@ -6,20 +6,19 @@ export default async (input: { email: string, password: string }) => {
         body: input,
     })
 
-    if (!response || !response.value || !response.value.token) {
-        console.log('Login failed')
+    if (!response|| !response.value || response.value.status !== 200) {
         return
     }
 
     const token = useCookie('token', {
         secure: true,
-        sameSite: "strict",
+        sameSite: 'strict',
         maxAge: 3600,
     })
 
-    token.value = response.value.token
+    token.value = response.value.json().token
 
-    const localePath = useLocalePath()
+    const { $localePath } = useNuxtApp()
 
-    return navigateTo(localePath({ name: 'admin-match' }))
+    return navigateTo($localePath('admin-match'))
 }
