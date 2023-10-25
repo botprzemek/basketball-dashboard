@@ -36,7 +36,7 @@ export default defineNuxtConfig({
       lang: 'pl',
       display: 'standalone',
       background_color: '#1d1d1d',
-      theme_color: '#1d1d1d',
+      theme_color: '#f23535',
       icons: [
         {
           src: '/favicon/favicon-192x192.png',
@@ -55,6 +55,12 @@ export default defineNuxtConfig({
           purpose: 'any maskable',
         }
       ]
+    },
+    workbox: {
+      clientsClaim: true,
+      skipWaiting: true,
+      navigateFallback: '/',
+      globPatterns: ['**/*.{js,css,html,png,svg,ico}'],
     }
   },
   app: {
