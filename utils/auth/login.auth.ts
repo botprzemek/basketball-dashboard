@@ -13,7 +13,7 @@ export default async (input: { email: string, password: string }) => {
 
     const token = useCookie('token', {
         secure: true,
-        sameSite: true,
+        sameSite: "strict",
         maxAge: 3600,
     })
 
