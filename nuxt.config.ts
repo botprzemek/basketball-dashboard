@@ -61,7 +61,7 @@ export default defineNuxtConfig({
       clientsClaim: true,
       skipWaiting: true,
       navigateFallback: null,
-      globPatterns: ['**/*.{js,css}'],
+      globPatterns: ['**/*.{js,css,html,svg,png,ico,webp}'],
     }
   },
   app: {
