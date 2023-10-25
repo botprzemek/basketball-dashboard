@@ -13,7 +13,9 @@ export default defineEventHandler(async (event: H3Event): Promise<{ token: strin
             },
             body: JSON.stringify(body)
         }
-        return (await fetch(`${config.public.apiBase}/auth/login`, options)).json()
+        const data: Response = await fetch(`${config.public.apiBase}/auth/login`, options)
+        if (data.status !== 200) return { token: '' }
+        return data.json()
     } catch (error) {
         return { token: '' }
     }
