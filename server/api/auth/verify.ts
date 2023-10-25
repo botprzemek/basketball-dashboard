@@ -1,6 +1,6 @@
-import {H3Event} from "h3";
-import {QueryValue} from "ufo";
-import {RuntimeConfig} from "nuxt/schema";
+import {H3Event} from 'h3'
+import type { RuntimeConfig } from 'nuxt/schema'
+import type { QueryValue } from 'ufo'
 
 const config: RuntimeConfig = useRuntimeConfig()
 
