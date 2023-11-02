@@ -27,6 +27,11 @@ export default defineNuxtConfig({
       websocketBase: process.env.WEBSOCKET_BASE,
     },
   },
+  nitro: {
+    prerender: {
+      routes: [ '/' ],
+    },
+  },
   pwa: {
     registerType: 'autoUpdate',
     strategies: 'generateSW',

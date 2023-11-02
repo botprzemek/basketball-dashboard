@@ -1,37 +1,42 @@
 <script setup lang="ts">
-import * as THREE from 'three';
-import {GLTFLoader} from "three/examples/jsm/loaders/GLTFLoader";
+import * as THREE from 'three'
+import {GLTFLoader} from 'three/examples/jsm/loaders/GLTFLoader'
 
-const scene = new THREE.Scene();
-const camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 1000 );
+const scene = new THREE.Scene()
+const camera = new THREE.PerspectiveCamera(75, 1, 0.1, 1000)
+const renderer = new THREE.WebGLRenderer()
 
-const renderer = new THREE.WebGLRenderer();
-renderer.setSize( window.innerWidth, window.innerHeight );
-document.body.appendChild( renderer.domElement );
+renderer.setSize(4000, 4000)
+document.body.appendChild(renderer.domElement)
 
-const loader = new GLTFLoader();
+const loader = new GLTFLoader()
 let loaded = false
 let model: THREE.Object3D<THREE.Event>
 
-loader.load( '/model/scene.gltf', (file) => {
-  model = file.scene
-  scene.add(model);
-  loaded = true
-}, undefined, function ( error ) {
-  console.error( error );
-} );
+loader.load( '/models/ball/scene.gltf',
+  (file) => {
+    model = file.scene
+    scene.add(model)
 
-camera.position.z = 5;
-
-function animate() {
-  requestAnimationFrame( animate );
-  if (loaded) {
-    model.position.y += 0.01
+    loaded = true
+  },
+  undefined,
+  (error) => {
+    console.error(error)
   }
-  renderer.render( scene, camera );
+)
+
+camera.position.z = 2
+
+const animate = () => {
+  // if (loaded) model.rotateY(0.2)
+
+  renderer.render(scene, camera)
+
+  requestAnimationFrame(animate)
 }
 
-animate();
+animate()
 </script>
 
 <!--<script setup lang="ts">-->
