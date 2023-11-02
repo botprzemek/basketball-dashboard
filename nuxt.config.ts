@@ -65,11 +65,12 @@ export default defineNuxtConfig({
     workbox: {
       clientsClaim: true,
       skipWaiting: true,
-      navigateFallback: null,
       globPatterns: ['**/*.{js,css,html,svg,png,ico,webp}'],
+      navigateFallback: null,
     }
   },
   app: {
+    baseURL: '/',
     rootId: 'app',
     rootTag: 'main',
     head: {
@@ -135,7 +136,7 @@ export default defineNuxtConfig({
     }
   },
   i18n: {
-    baseUrl: 'http://localhost:3000',
+    baseUrl: '/',
     defaultLocale: 'pl',
     locales: [
       {
