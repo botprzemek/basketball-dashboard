@@ -13,7 +13,10 @@ export default defineEventHandler(async (event: H3Event): Promise<any> => {
             },
             body: JSON.stringify(body)
         }
-        return fetch(`${config.public.apiBase}/auth/login`, options)
+
+        const response: Response = await fetch(`${config.public.apiBase}/auth/login`, options)
+
+        return response.body
     } catch (error) {
         return null
     }

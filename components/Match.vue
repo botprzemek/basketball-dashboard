@@ -1,12 +1,9 @@
 <script setup lang="ts">
 import { io } from 'socket.io-client'
-import { gameClient } from '~/utils/socket/game.socket'
-
 onMounted(() => {
   const socket = io(useRuntimeConfig().public.websocketBase, {
     secure: true,
   })
-  gameClient(socket)
 })
 </script>
 
