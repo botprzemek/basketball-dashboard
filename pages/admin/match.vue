@@ -53,6 +53,13 @@ onMounted(() => {
 
   admin.on('update_team', (data) => teams.value.push(data))
 
+  admin.on('update_player_state', (data) => {
+    teams.value
+        .filter((team) => team.name === data.team)[0]
+        .players.filter((player) => player.number === data.number)[0]
+        .status = data.status
+  })
+
   admin.on('update_player_statistics_seconds', (data) => {
     teams.value
         .filter((team) => team.name === data.team)[0]
