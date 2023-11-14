@@ -17,6 +17,11 @@ let status = ref('NOT_FOUND')
 let quarter = ref(0)
 let time = ref(0)
 let teams = ref([])
+let substitution = ref({
+  team: 0,
+  substitute: 0,
+  changer: 0
+})
 
 useHeadSafe({
   title: t(`path.${useRouter().currentRoute.value.name.split('___')[0].replaceAll('-', '.')}`)
@@ -53,18 +58,34 @@ onMounted(() => {
 
   admin.on('update_team', (data) => teams.value.push(data))
 
+  admin.on('update_player', (data) => {
+    console.table(
+        teams.value
+            .filter((team): boolean => team.name === data.team)[0]
+            .players
+            .filter((player): boolean => player.number === data.player.number)
+            [0]'\'
+    )
+    teams.value
+        .filter((team): boolean => team.name === data.team)[0]
+        .players
+        .filter((player): boolean => player.number === data.player.number)
+        [0] = data.player
+  })
+
   admin.on('update_player_state', (data) => {
     teams.value
-        .filter((team) => team.name === data.team)[0]
-        .players.filter((player) => player.number === data.number)[0]
-        .status = data.status
+        .filter((team): boolean => team.name === data.team)[0]
+        .players
+        .filter((player): boolean => player.number === data.number)
+        [0].state = data.state
   })
 
   admin.on('update_player_statistics_seconds', (data) => {
     teams.value
         .filter((team) => team.name === data.team)[0]
-        .players.filter((player) => player.number === data.number)[0]
-        .statistics.seconds = data.seconds
+        .players.filter((player) => player.number === data.number)
+        [0].statistics.seconds = data.seconds
   })
 
   // admin.on('update_player', (data: any) => {
@@ -82,13 +103,32 @@ onMounted(() => {
   //   players.value[data.new.id] = data.new
   // })
 })
+
+const startGame = () => {
+  admin.emit('start_game')
+}
+const pauseGame = () => {
+  admin.emit('pause_game')
+}
+const substitutePlayers = () => {
+  console.table({
+    team: 1 * substitution.value.team,
+    substitute: 1 * substitution.value.substitute,
+    changer: 1 * substitution.value.changer,
+  })
+  admin.emit('substitution_team', {
+    team: 1 * substitution.value.team,
+    substitute: 1 * substitution.value.substitute,
+    changer: 1 * substitution.value.changer,
+  })
+}
 </script>
 
 <template>
   <h1>Game</h1>
-  <button @click="admin.emit('start_game')">Start</button>
+  <button @click="startGame()">Start</button>
   <br>
-  <button @click="admin.emit('pause_game')">Pause</button>
+  <button @click="pauseGame()">Pause</button>
   <p>{{ status }}</p>
   <p>{{ quarter }}</p>
   <p>{{ timeUtil(time) }}</p>
@@ -117,4 +157,14 @@ onMounted(() => {
       <br>
     </li>
   </ul>
+  <label>Team</label>
+  <input v-model="substitution.team">
+  <br>
+  <label>Substitute</label>
+  <input v-model="substitution.substitute">
+  <br>
+  <label>Changer</label>
+  <input v-model="substitution.changer">
+  <br>
+  <button @click="substitutePlayers()">Substitution</button>
 </template>
