@@ -8,8 +8,10 @@ useHeadSafe({
 
 <template>
   <h1>{{ $t(`path.${$route.name.split('___')[0]}`) }}</h1>
+  Road mapa z osiągnięciami
   Stworzenie
-  Rodzina
   Aktualny stan
-  SLK
+
+  ŚLK
+  Sparingi
 </template>

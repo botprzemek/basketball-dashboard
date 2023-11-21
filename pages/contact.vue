@@ -1,5 +1,9 @@
 <script setup lang="ts">
+import socials from '~/config/socials'
+import contact from '~/config/contact'
+
 const { t } = useI18n({ useScope: 'global' })
+const localePath = useLocalePath()
 
 useHeadSafe({
   title: t(`path.${useRouter().currentRoute.value.name.split('___')[0]}`)
@@ -7,54 +11,97 @@ useHeadSafe({
 </script>
 
 <template>
-  <h1>Kontakt</h1>
+  <section>
+    <h1>
+      {{ $t('pages.contact.title') }}
+    </h1>
+    <p>
+      {{ $t('pages.contact.description') }}
+    </p>
+  </section>
 
-  <h2>Knury Knurów - Stowarzyszenie "Cała Naprzód"</h2>
+<!--  <a :href="`webcal:${new Date()}`">TEST KALENDARZA</a>-->
 
-  <h3>Korespondecja</h3>
-  <ul>
-    <li>Adres	ul. Szpitalna 8/414, 44-190 Knurów</li>
-    <li>Biuro	48 502 320 658 (Angelika Suchocka)</li>
-    <a href="tel:+48502320658">Link</a>
-    <li>Treningi 48 729 319 171 (Przemysław Szymański)</li>
-    <a href="tel:+48729319171">Link</a>
-    <li>Email	info@knuryknurow.pl</li>
-    <a href="mailto:info@knuryknurow.pl">Link</a>
-    <li>Hala al. Lipowa 12A, 44-194 Knurów</li>
-    <a href="https://maps.app.goo.gl/AGNb9PufTWq9uMgL8">Link</a>
-  </ul>
+  <section>
+    <h3>
+      {{ $t('pages.contact.post.title') }}
+    </h3>
+    <ul>
+      <li v-for="element in Object.keys(contact)" :key="contact[element].content">
+        <a :href="contact[element].link">
+          {{ $t(`pages.contact.post.${element}`) }} {{ contact[element].content }}
+        </a>
+      </li>
+    </ul>
+  </section>
 
-  <h3>Social Media</h3>
-  <ul>
-    <li>Facebook fb.knuryknurow.pl</li>
-    <a href="https://fb.me/knury.knurow" target="_blank">Link</a>
-    <li>Instagram	ig.knuryknurow.pl</li>
-    <a href="https://www.instagram.com/knury.knurow" target="_blank">Link</a>
-    <li>Tiktok tt.knuryknurow.pl</li>
-    <a href="https://tiktok.com/@knury.knurow" target="_blank">Link</a>
-    <li>Youtube yt.knuryknurow.pl</li>
-    <a href="https://www.youtube.com/@knury.knurow" target="_blank">Link</a>
-  </ul>
+  <section>
+    <h3>
+      {{ $t('pages.contact.socials.title') }}
+    </h3>
+    <p>
+      {{ $t('pages.contact.socials.description') }}
+    </p>
+    <ul>
+      <li v-for="social in socials" :key="social.name">
+        <a :href="social.link" target="_blank">
+          {{ social.name }}
+        </a>
+      </li>
+    </ul>
+  </section>
 
-  <h3>Mapa</h3>
-  <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d638.1821194752788!2d18.665386400000003!3d50.222294200000015!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4711369279b4963f%3A0xe67763a72d737fe3!2sSzpitalna%208%2C%2044-190%20Knur%C3%B3w!5e0!3m2!1sen!2spl!4v1697113962476!5m2!1sen!2spl" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+  <section>
+    <h3>
+      {{ $t('pages.contact.maps') }}
+    </h3>
+<!--    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d638.1821194752788!2d18.665386400000003!3d50.222294200000015!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4711369279b4963f%3A0xe67763a72d737fe3!2sSzpitalna%208%2C%2044-190%20Knur%C3%B3w!5e0!3m2!1sen!2spl!4v1697113962476!5m2!1sen!2spl" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>-->
+  </section>
 
-  <p>Masz pytanie? Zadzwoń do nas!
-  Lub napisz do nas maila!
-    Konieczne wcześniejsze umówienie spotkania telefonicznie!</p>
+  <section>
+    <h3>
+      {{ $t('pages.contact.available.title') }}
+    </h3>
 
-  <h3>Dni i godziny otwarcia</h3>
-  <p>Rozgrywki</p>
-  <ul>
-    <li>ŚLK - Niedziele (<NuxtLinkLocale to="/schedule">Terminarz</NuxtLinkLocale>)</li>
-    <li>Sparingi - Soboty (<NuxtLinkLocale to="/schedule">Terminarz</NuxtLinkLocale>)</li>
-  </ul>
-  <p>Biuro</p>
-  <ul>
-    <li>Poniedziałek - 8:00 - 13:00</li>
-    <li>Wtorek - 8:00 - 13:00</li>
-    <li>Środa - 8:00 - 13:00</li>
-    <li>Czwartek - 8:00 - 13:00</li>
-    <li>Piątek - 8:00 - 13:00</li>
-  </ul>
+    <p>
+      {{ $t('pages.contact.available.description') }}
+    </p>
+
+    <p>
+      {{ $t('pages.contact.available.matches.title') }}
+    </p>
+
+    <ul>
+      <li>
+        <p>
+          <NuxtLinkLocale :to="localePath('schedule')">
+            {{ $t('pages.contact.available.matches.league') }}
+            ({{ $t('pages.contact.available.matches.schedule') }})
+          </NuxtLinkLocale>
+        </p>
+      </li>
+      <li>
+        <p>
+          <NuxtLinkLocale :to="localePath('schedule')">
+            {{ $t('pages.contact.available.matches.scrimmage') }}
+            ({{ $t('pages.contact.available.matches.schedule') }})
+          </NuxtLinkLocale>
+        </p>
+      </li>
+    </ul>
+
+    <p>
+      {{ $t('pages.contact.available.office.title') }}
+    </p>
+
+    <ul>
+      <li v-for="index in 5" :key="index">
+        <p>
+          {{ $t(`pages.contact.available.office.days.${index - 1}`) }}
+          -
+          {{ $t('pages.contact.available.office.hours') }}
+        </p>
+      </li>
+    </ul>
+  </section>
 </template>

@@ -41,8 +41,6 @@
     "@types/node": "^18.17.3",
     "@types/three": "^0.155.1",
     "@vite-pwa/nuxt": "^0.1.1",
-    "@vueuse/core": "^10.4.0",
-    "@vueuse/nuxt": "^10.4.0",
     "autoprefixer": "^10.4.15",
     "eslint-plugin-vue": "^9.17.0",
     "nuxt": "^3.8.0",
@@ -53,5 +51,8 @@
   },
   "resolutions": {
     "@nuxt/kit": "3.6.5"
+  },
+  "dependencies": {
+    "@vueuse/nuxt": "^10.6.1"
   }
 }

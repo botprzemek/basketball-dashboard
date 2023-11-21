@@ -16,8 +16,6 @@ useHeadSafe({
   }
 })
 
-
-
 useSeoMeta({
   ogTitle: config.public.websiteName,
   ogDescription: '[og:description]',

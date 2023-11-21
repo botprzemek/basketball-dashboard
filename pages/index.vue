@@ -8,16 +8,46 @@ useHeadSafe({
 </script>
 
 <template>
-  <h1>{{ $t(`path.${$route.name.split('___')[0]}`) }}</h1>
-  <NuxtLink :to="localePath('match')">
-    {{ t(`path.match`) }}
-  </NuxtLink>
-<!--  Terminarz-->
-<!--  Zespół-->
-<!--  Merch-->
-<!--  Aktualności-->
-<!--  O nas-->
-<!--  Partnerstwo-->
-<!--  Media-->
-<!--  Kontakt-->
+  Młodzież idzie po swoje!
+
+  <br>
+
+  Komponent: Terminarz
+
+  <br>
+
+  Komponent: Aktualności
+
+  <br>
+
+  Komponent: Zespół
+
+
+  <br>
+
+  Komponent: Merch
+
+  <br>
+
+  Komponent: O nas
+
+  <br>
+
+  Komponent: Road mapa z osiągnięciami
+
+  <br>
+
+  Komponent: Partnerstwo
+
+  <br>
+
+  Komponent: Media
+
+  <br>
+
+  Komponent: Kontakt
+
+  <br>
+
+  Komponent: Mapa strony
 </template>

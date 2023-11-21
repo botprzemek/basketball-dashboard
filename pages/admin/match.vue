@@ -13,14 +13,15 @@ const token = useCookie('token').value
 
 let admin: Socket
 
-let status = ref('NOT_FOUND')
+let loaded = ref(false)
+let state = ref('NOT_FOUND')
 let quarter = ref(0)
 let time = ref(0)
 let teams = ref([])
 let substitution = ref({
-  team: 0,
-  substitute: 0,
-  changer: 0
+  team: -1,
+  substitute: -1,
+  changer: -1
 })
 
 useHeadSafe({
@@ -50,74 +51,57 @@ onMounted(() => {
 
   admin.emit('initialize_game')
 
-  admin.on('update_status', (data) => status.value = data)
+  admin.on('update_state', (data) => state.value = data)
 
   admin.on('update_quarter', (data) => quarter.value = data)
 
   admin.on('update_time', (data) => time.value = data)
 
-  admin.on('update_team', (data) => teams.value.push(data))
-
-  admin.on('update_player', (data) => {
-    console.table(
-        teams.value
-            .filter((team): boolean => team.name === data.team)[0]
-            .players
-            .filter((player): boolean => player.number === data.player.number)
-            [0]'\'
-    )
-    teams.value
-        .filter((team): boolean => team.name === data.team)[0]
-        .players
-        .filter((player): boolean => player.number === data.player.number)
-        [0] = data.player
+  admin.on('update_team', (data) => {
+    teams.value.push(data)
+    loaded.value = true
   })
 
   admin.on('update_player_state', (data) => {
     teams.value
-        .filter((team): boolean => team.name === data.team)[0]
-        .players
+        .filter((team): boolean => team.name === data.team)[0].players
         .filter((player): boolean => player.number === data.number)
         [0].state = data.state
   })
 
   admin.on('update_player_statistics_seconds', (data) => {
     teams.value
-        .filter((team) => team.name === data.team)[0]
-        .players.filter((player) => player.number === data.number)
+        .filter((team) => team.name === data.team)[0].players
+        .filter((player) => player.number === data.number)
         [0].statistics.seconds = data.seconds
   })
-
-  // admin.on('update_player', (data: any) => {
-  //   players.value[data.id] = data
-  // })
-  //
-  // admin.on('update_player_state', (data: any) => {
-  //   players.value[data.id].state = data.state
-  // })
-
-  // admin.on('update_player_statistics_seconds', (data) => {})
-
-  // admin.on('update_substitution', (data: any) => {
-  //   players.value[data.old.id] = data.old
-  //   players.value[data.new.id] = data.new
-  // })
 })
 
-const startGame = () => {
+const getActivePlayers = (): any[] => {
+  if (substitution.value.team === -1) return []
+  return teams.value
+      .filter((team, index) => index === substitution.value.team)[0].players
+      .filter((player) => player.state === 'PLAYING')
+}
+
+const getBenchedPlayers = (): any[] => {
+  if (substitution.value.team === -1) return []
+  return teams.value
+      .filter((team, index) => index === substitution.value.team)[0].players
+      .filter((player) => player.state === 'BENCHED')
+}
+
+const startGame = (): void => {
   admin.emit('start_game')
 }
-const pauseGame = () => {
+
+const pauseGame = (): void => {
   admin.emit('pause_game')
 }
+
 const substitutePlayers = () => {
-  console.table({
-    team: 1 * substitution.value.team,
-    substitute: 1 * substitution.value.substitute,
-    changer: 1 * substitution.value.changer,
-  })
   admin.emit('substitution_team', {
-    team: 1 * substitution.value.team,
+    team: substitution.value.team,
     substitute: 1 * substitution.value.substitute,
     changer: 1 * substitution.value.changer,
   })
@@ -129,7 +113,7 @@ const substitutePlayers = () => {
   <button @click="startGame()">Start</button>
   <br>
   <button @click="pauseGame()">Pause</button>
-  <p>{{ status }}</p>
+  <p>{{ state }}</p>
   <p>{{ quarter }}</p>
   <p>{{ timeUtil(time) }}</p>
   <br>
@@ -138,33 +122,45 @@ const substitutePlayers = () => {
       <h2>{{ team.name }}</h2>
       <br>
       <h3>Players</h3>
-      <ul v-for="player in team.players">
-        <li>
-          <p>
-            {{ player.name }}
-            {{ player.lastname }}
-            no. {{ player.number }}
-          </p>
-          <p>
-            {{ player.position }}
-            {{ player.state }}
-          </p>
-          <p>
-            [[ MINUTES - {{ Math.ceil(player.statistics.seconds / 60) }} ]]
-          </p>
+      <ul class="grid">
+        <li v-for="player in team.players" class="grid grid-flow-row outline outline-1">
+          <section class="grid grid-cols-6">
+            <p>no. {{ player.number }}</p>
+            <p>{{ player.position }}</p>
+            <p>{{ player.name }}</p>
+            <p>{{ player.lastname }}</p>
+            <p>{{ player.state }}</p>
+            <p>{{ Math.ceil(player.statistics.seconds / 60) }} min</p>
+          </section>
         </li>
       </ul>
       <br>
     </li>
   </ul>
-  <label>Team</label>
-  <input v-model="substitution.team">
-  <br>
-  <label>Substitute</label>
-  <input v-model="substitution.substitute">
-  <br>
-  <label>Changer</label>
-  <input v-model="substitution.changer">
-  <br>
-  <button @click="substitutePlayers()">Substitution</button>
+  <section v-if="loaded">
+    <h3>Substitution</h3>
+    <label>Team</label>
+    <select v-model="substitution.team">
+      <option v-for="team in teams" :value="teams.indexOf(team)">
+        {{ team.name }}
+      </option>
+    </select>
+    <section v-if="substitution.team !== -1">
+      <label>Substitute</label>
+      <select v-model="substitution.substitute">
+        <option v-for="(player, index) in getActivePlayers()" :value="player.number" v-bind:selected="index === 0">
+          {{ player.name }} {{ player.lastname }}
+        </option>
+      </select>
+      <br>
+      <label>Changer</label>
+      <select v-model="substitution.changer">
+        <option v-for="(player, index) in getBenchedPlayers()" :value="player.number" v-bind:selected="index === 0">
+          {{ player.name }} {{ player.lastname }}
+        </option>
+      </select>
+    </section>
+    <br>
+    <button @click="substitutePlayers()">Click to substitute</button>
+  </section>
 </template>

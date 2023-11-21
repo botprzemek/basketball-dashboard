@@ -9,9 +9,18 @@ useHeadSafe({
 <template>
   <h1>{{ $t(`path.${$route.name.split('___')[0]}`) }}</h1>
 
-  ŚLK
-  Sparing
-  Wyniki
-  Statystyki meczów
+  Najbliższy mecz/Na żywo
+
+  Liga
+  Kolejka
+  Data
+  Godzina
   Hala
+  VS
+  Skład
+
+  Wyniki
+  Statystyki drużynowe
+
+  ŚLK kilka słów
 </template>
