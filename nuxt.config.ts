@@ -201,9 +201,13 @@ export default defineNuxtConfig({
         pl: '/wsparcie',
         en: '/support'
       },
-      team: {
+      'team/index': {
         pl: '/zespol',
         en: '/team'
+      },
+      'team/[name]/players/[fullname]': {
+        pl: '/zespol/[name]/gracze/[fullname]',
+        en: '/team/[name]/players/[fullname]'
       },
     },
   }

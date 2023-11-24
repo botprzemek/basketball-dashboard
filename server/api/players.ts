@@ -1,4 +1,4 @@
-import { RuntimeConfig } from 'nuxt/schema'
+import { type RuntimeConfig } from 'nuxt/schema'
 
 const config: RuntimeConfig = useRuntimeConfig()
 

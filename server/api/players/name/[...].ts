@@ -9,6 +9,6 @@ export default defineEventHandler(async (event): Promise<any>  => {
     }
   }
   // @ts-ignore
-  const data: Response = await fetch(`${config.public.apiBase}/players/${event.context.params._}`, options)
+  const data: Response = await fetch(`${config.public.apiBase}/players/name/${event.context.params._}`, options)
   return (data.status === 200) ? await data.json() : []
 })
