@@ -16,8 +16,8 @@ export default defineEventHandler(async (event: H3Event): Promise<any[]> => {
 	const [id, parameter] = event.context.params.slug.split('/')
 	if (!id) return []
 	const url: string = parameter
-		? `${apiBase}/teams/id/${id}/${parameter}`
-		: `${apiBase}/teams/id/${id}`
+		? `${apiBase}/arenas/id/${id}/${parameter}`
+		: `${apiBase}/arenas/id/${id}`
 	const data: Response = await fetch(url, options)
 	if (data.status !== 200) return []
 	return data ? await data.json() : []

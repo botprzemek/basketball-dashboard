@@ -1,4 +1,7 @@
 # TODO
+
+<!-- TODO README.md -->
+
 1. [PWA](https://pwa.nuxtjs.org/) ✅
 2. SEO and Meta tags ✅
 3. Favicons ✅
@@ -10,7 +13,8 @@
 
 # Nuxt 3 Minimal Starter
 
-Look at the [Nuxt 3 documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
+Look at the [Nuxt 3 documentation](https://nuxt.com/docs/getting-started/introduction) to learn
+more.
 
 ## Setup
 
@@ -70,4 +74,5 @@ pnpm run preview
 yarn preview
 ```
 
-Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
+Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more
+information.

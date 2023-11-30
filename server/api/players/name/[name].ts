@@ -12,12 +12,9 @@ const options = {
 }
 
 export default defineEventHandler(async (event: H3Event): Promise<any[]> => {
-	if (!event.context.params) return []
-	const [id, parameter] = event.context.params.slug.split('/')
-	if (!id) return []
-	const url: string = parameter
-		? `${apiBase}/teams/id/${id}/${parameter}`
-		: `${apiBase}/teams/id/${id}`
+	const name: string | undefined = getRouterParam(event, 'name')
+	if (!name) return []
+	const url: string = `${apiBase}/players/name/${name}`
 	const data: Response = await fetch(url, options)
 	if (data.status !== 200) return []
 	return data ? await data.json() : []

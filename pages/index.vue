@@ -3,51 +3,50 @@ const localePath = useLocalePath()
 const { t } = useI18n({ useScope: 'global' })
 
 useHeadSafe({
-  title: t(`path.${useRouter().currentRoute.value.name.split('___')[0]}`)
+	title: t(`path.${useRouter().currentRoute.value.name.split('___')[0]}`)
 })
 </script>
 
 <template>
-  Młodzież idzie po swoje!
+	Młodzież idzie po swoje!
 
-  <br>
+	<br />
 
-  Komponent: Terminarz
+	Komponent: Terminarz
 
-  <br>
+	<br />
 
-  Komponent: Aktualności
+	Komponent: Aktualności
 
-  <br>
+	<br />
 
-  Komponent: Zespół
+	Komponent: Zespół
 
+	<br />
 
-  <br>
+	Komponent: Merch
 
-  Komponent: Merch
+	<br />
 
-  <br>
+	Komponent: O nas
 
-  Komponent: O nas
+	<br />
 
-  <br>
+	Komponent: Road mapa z osiągnięciami
 
-  Komponent: Road mapa z osiągnięciami
+	<br />
 
-  <br>
+	Komponent: Partnerstwo
 
-  Komponent: Partnerstwo
+	<br />
 
-  <br>
+	Komponent: Media
 
-  Komponent: Media
+	<br />
 
-  <br>
+	Komponent: Kontakt
 
-  Komponent: Kontakt
+	<br />
 
-  <br>
-
-  Komponent: Mapa strony
+	Komponent: Mapa strony
 </template>

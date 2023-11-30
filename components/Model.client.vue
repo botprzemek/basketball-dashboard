@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import * as THREE from 'three'
-import {GLTFLoader} from 'three/examples/jsm/loaders/GLTFLoader'
+import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader'
 
 const scene = new THREE.Scene()
 const camera = new THREE.PerspectiveCamera(75, 1, 0.1, 1000)
@@ -13,27 +13,28 @@ const loader = new GLTFLoader()
 let loaded = false
 let model: THREE.Object3D<THREE.Event>
 
-loader.load( '/models/ball/scene.gltf',
-  (file) => {
-    model = file.scene
-    scene.add(model)
+loader.load(
+	'/models/ball/scene.gltf',
+	(file) => {
+		model = file.scene
+		scene.add(model)
 
-    loaded = true
-  },
-  undefined,
-  (error) => {
-    console.error(error)
-  }
+		loaded = true
+	},
+	undefined,
+	(error) => {
+		console.error(error)
+	}
 )
 
 camera.position.z = 2
 
 const animate = () => {
-  // if (loaded) model.rotateY(0.2)
+	// if (loaded) model.rotateY(0.2)
 
-  renderer.render(scene, camera)
+	renderer.render(scene, camera)
 
-  requestAnimationFrame(animate)
+	requestAnimationFrame(animate)
 }
 
 animate()
@@ -91,7 +92,7 @@ animate()
 <!--</script>-->
 
 <template>
-  <div class="w-screen h-screen">
-    <canvas class="w-full h-full"/>
-  </div>
+	<div class="w-screen h-screen">
+		<canvas class="w-full h-full" />
+	</div>
 </template>
