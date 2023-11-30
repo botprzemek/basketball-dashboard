@@ -1,4 +1,4 @@
-const test = {
+export default {
   address: {
     content: 'ul. Szpitalna 8/414, 44-190 Knurów',
     link: 'https://maps.app.goo.gl/2zvfdWdayL7uezpe6',

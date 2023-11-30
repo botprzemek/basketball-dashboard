@@ -8,13 +8,17 @@ useHead({
   title: t(`path.${useRouter().currentRoute.value.name.split('___')[0]}`)
 })
 
-const { data: teams } = await useFetch('/api/teams/name/Knury Knurów')
+const { data: cities } = await useFetch(`/api/cities/name/Knurów`)
 
-const players: Ref = ref({})
+const { data: teams } = await useFetch(`/api/cities/id/${cities.value[0].id}/teams`)
 
 for (let i = 0; i < teams.value.length; i++) {
-  const { data: playersById } = await useFetch(`/api/teams/id/${teams.value[i].id}/players`)
-  players.value[teams.value[i].id] = playersById.value
+  const { data: leagueById } = await useFetch(`/api/leagues/id/${teams.value[i].league_id}`)
+  const { data: staffByTeamId } = await useFetch(`/api/teams/id/${teams.value[i].id}/staff`)
+  const { data: playersByTeamId } = await useFetch(`/api/teams/id/${teams.value[i].id}/players`)
+  teams.value[i].league = (leagueById) ? leagueById.value[0] : { name: 'Blank' }
+  teams.value[i].players = (playersByTeamId) ? playersByTeamId.value : []
+  teams.value[i].staff = (staffByTeamId) ? staffByTeamId.value : []
 }
 </script>
 
@@ -39,13 +43,21 @@ for (let i = 0; i < teams.value.length; i++) {
 
   Statystyki indywidualne
 
+  <p v-for="city in cities" :key="city.name">
+    City
+    {{ city.name }},
+    {{ city.state }}
+  </p>
   <ul>
     <li v-for="team in teams" :key="team.name">
-      <p>{{ team.name }}</p>
-      <p>League</p>
-      <p>{{ team.league.name }}</p>
-      <p>City</p>
-      <p>{{ team.city.name }}</p>
+      <p>
+        Team
+        {{ team.name }}
+      </p>
+      <p>
+        League
+        {{ team.league.name }}
+      </p>
       <p>Staff</p>
       <ul>
         <li v-for="staff in team.staff" :key="staff.lastname" class="grid">
@@ -65,7 +77,7 @@ for (let i = 0; i < teams.value.length; i++) {
           <p>Age</p>
           <p>Starter</p>
         </li>
-        <li v-for="player in players[team.id]" :key="player.lastname" class="grid">
+        <li v-for="player in team.players" :key="player.lastname" class="grid">
           <img :alt="`${player.name} ${player.lastname}`" src="https://a.espncdn.com/combiner/i?img=/i/headshots/nba/players/full/3449.png&w=70&h=50">
           <p>{{ player.name }}</p>
           <p>{{ player.lastname }}</p>
