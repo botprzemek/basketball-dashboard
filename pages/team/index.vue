@@ -1,5 +1,5 @@
 <script async setup lang="ts">
-import teamData from "~/composables/data/team.data";
+import teamData from '~/composables/data/team.data'
 
 const { t } = useI18n({ useScope: 'global' })
 const localePath = useLocalePath()
