@@ -1,5 +1,6 @@
 <script async setup lang="ts">
 import teamData from '~/composables/data/team.data'
+import AverageStatistics from '~/components/statistics/averages/AverageStatistics.vue'
 
 const { t } = useI18n({ useScope: 'global' })
 const localePath = useLocalePath()
@@ -28,6 +29,10 @@ const { cities, teams } = await teamData()
 				Team
 				{{ team.name }}
 			</p>
+			<p>
+				Record
+				{{ team.won }} - {{ team.lost }}
+			</p>
 			<p v-if="team.league">
 				League
 				{{ team.league.name }}
@@ -45,6 +50,7 @@ const { cities, teams } = await teamData()
 					<p>{{ staff.role }}</p>
 				</li>
 			</ul>
+			<AverageStatistics />
 			<p>Players</p>
 			<ul>
 				<li class="grid">

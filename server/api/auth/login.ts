@@ -6,7 +6,7 @@ const config: RuntimeConfig = useRuntimeConfig()
 export default defineEventHandler(async (event: H3Event): Promise<any> => {
 	try {
 		const body = await readBody(event)
-		const options = {
+
 			method: 'POST',
 			headers: {
 				secret: config.apiSecret

@@ -38,7 +38,7 @@ export default defineI18nConfig(() => ({
 						office: 'Biuro',
 						training: 'Treningi',
 						email: 'E-mail',
-						arena: 'Hala'
+						arena: 'Obiekt sportowy'
 					},
 					socials: {
 						title: 'Social Media',

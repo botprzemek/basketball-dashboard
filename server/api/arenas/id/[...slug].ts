@@ -1,15 +1,10 @@
 import type { H3Event } from 'h3'
+import optionsAuth from "~/utils/auth/options.auth";
 
 const {
 	apiSecret,
 	public: { apiBase }
 } = useRuntimeConfig()
-
-const options = {
-	headers: {
-		secret: apiSecret
-	}
-}
 
 export default defineEventHandler(async (event: H3Event): Promise<any[]> => {
 	if (!event.context.params) return []
@@ -18,7 +13,7 @@ export default defineEventHandler(async (event: H3Event): Promise<any[]> => {
 	const url: string = parameter
 		? `${apiBase}/arenas/id/${id}/${parameter}`
 		: `${apiBase}/arenas/id/${id}`
-	const data: Response = await fetch(url, options)
+	const data: Response = await fetch(url, optionsAuth)
 	if (data.status !== 200) return []
 	return data ? await data.json() : []
 })

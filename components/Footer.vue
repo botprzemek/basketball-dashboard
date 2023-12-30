@@ -7,7 +7,7 @@ const localePath = useLocalePath()
 <template>
 	<footer class="mt-auto">
 		<nav class="w-screen grid place-content-center">
-			<h1>Knury Knurów</h1>
+			<h1>Knury Knurów - Młodzież idzie po swoje!</h1>
 			<p>{{ $t('static.copyright') }} © {{ new Date().getFullYear() }} - Knury Knurów</p>
 			<NuxtLink :to="localePath('sitemap')">
 				{{ $t('static.sitemap') }}
