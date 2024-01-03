@@ -9,7 +9,17 @@ export default defineNuxtConfig({
 		}
 	},
 	devtools: {
-		enabled: false
+		enabled: true
+	},
+	runtimeConfig: {
+		apiKey: process.env.API_KEY,
+		public: {
+			name: process.env.APP_NAME,
+			url: {
+				api: process.env.API_BASE,
+				ws: process.env.WEBSOCKET_BASE
+			}
+		}
 	},
 	modules: [
 		'@nuxtjs/tailwindcss',
@@ -19,14 +29,6 @@ export default defineNuxtConfig({
 		'@vite-pwa/nuxt',
 		'nuxt-simple-sitemap'
 	],
-	runtimeConfig: {
-		apiSecret: process.env.API_SECRET,
-		public: {
-			websiteName: process.env.APP_NAME,
-			apiBase: process.env.API_BASE,
-			websocketBase: process.env.WEBSOCKET_BASE
-		}
-	},
 	pwa: {
 		registerType: 'autoUpdate',
 		strategies: 'generateSW',
@@ -151,17 +153,17 @@ export default defineNuxtConfig({
 				pl: '/o-nas',
 				en: '/about'
 			},
+			'admin/dashboard': {
+				pl: '/panel',
+				en: '/dashboard'
+			},
 			'admin/login': {
 				pl: '/panel/logowanie',
-				en: '/admin/login'
-			},
-			'admin/match': {
-				pl: '/panel/mecz',
-				en: '/admin/match'
+				en: '/dashboard/login'
 			},
 			'admin/verify': {
 				pl: '/panel/weryfikacja',
-				en: '/admin/verify'
+				en: '/dashboard/verify'
 			},
 			contact: {
 				pl: '/kontakt',

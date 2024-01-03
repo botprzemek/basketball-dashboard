@@ -1,15 +1,13 @@
 <script async setup lang="ts">
-import teamData from '~/composables/data/team.data'
-import AverageStatistics from '~/components/statistics/averages/AverageStatistics.vue'
+import Teams from '~/components/Teams.vue'
 
 const { t } = useI18n({ useScope: 'global' })
-const localePath = useLocalePath()
 
 useHead({
 	title: t(`path.${useRouter().currentRoute.value.name.split('___')[0]}`)
 })
 
-const { cities, teams } = await teamData()
+let { data: cities } = await useFetch(`/api/basketball/cities?name=Knurów`)
 </script>
 
 <template>
@@ -18,71 +16,29 @@ const { cities, teams } = await teamData()
 	Team I Team II Statystyki średnie Statystyki drużynowe Trener motoryki Hala sportowa Zdjęcie
 	Imię i nazwisko Numer Pozycja Wzrost Wiek Statystyki indywidualne
 
-	<p v-for="city in cities" :key="city.name">
-		City
-		{{ city.name }},
-		{{ city.state }}
-	</p>
-	<ul>
-		<li v-for="team in teams" :key="team.name">
-			<p>
-				Team
-				{{ team.name }}
-			</p>
-			<p>
-				Record
-				{{ team.won }} - {{ team.lost }}
-			</p>
-			<p v-if="team.league">
-				League
-				{{ team.league.name }}
-			</p>
-			<p v-if="team.arena">
-				Arena
-				{{ team.arena.name }}
-				{{ team.arena.location }}
-			</p>
-			<p v-if="team.staff">Staff</p>
-			<ul>
-				<li v-for="staff in team.staff" :key="staff.lastname" class="grid">
-					<p>{{ staff.name }}</p>
-					<p>{{ staff.lastname }}</p>
-					<p>{{ staff.role }}</p>
-				</li>
-			</ul>
-			<AverageStatistics />
-			<p>Players</p>
-			<ul>
-				<li class="grid">
-					<p>Name</p>
-					<p>Lastname</p>
-					<p>Number</p>
-					<p>Height</p>
-					<p>Pos</p>
-					<p>Age</p>
-					<p>Starter</p>
-				</li>
-				<li
-					v-if="team.players"
-					v-for="player in team.players"
-					:key="player.lastname"
-					class="grid"
-				>
-					<NuxtLink
-						:to="
-							localePath({
-								name: 'team-name-players-fullname',
-								params: {
-									name: team.name,
-									fullname: `${player.name} ${player.lastname}`
-								}
-							})
-						"
-					>
-						<Player :player="player" />
-					</NuxtLink>
-				</li>
-			</ul>
-		</li>
-	</ul>
+	<section v-for="city in cities" :key="city.name">
+		<h3>
+			{{ city.name }},
+			{{ city.state }}
+		</h3>
+		<Teams :city="city" />
+	</section>
+	<!--			<p v-if="team.league">-->
+	<!--				League-->
+	<!--				{{ team.league.name }}-->
+	<!--			</p>-->
+	<!--			<p v-if="team.arena">-->
+	<!--				Arena-->
+	<!--				{{ team.arena.name }}-->
+	<!--				{{ team.arena.location }}-->
+	<!--			</p>-->
+	<!--			<p v-if="team.staff">Staff</p>-->
+	<!--			<ul>-->
+	<!--				<li v-for="staff in team.staff" :key="staff.lastname" class="grid">-->
+	<!--					<p>{{ staff.name }}</p>-->
+	<!--					<p>{{ staff.lastname }}</p>-->
+	<!--					<p>{{ staff.role }}</p>-->
+	<!--				</li>-->
+	<!--			</ul>-->
+	<!--			<AverageStatistics />-->
 </template>

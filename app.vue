@@ -10,21 +10,19 @@ useHeadSafe({
 		class: 'min-h-screen max-h-max min-w-screen max-w-screen'
 	},
 	titleTemplate: (titleChunk) => {
-		return titleChunk
-			? `${titleChunk} · ${config.public.websiteName}`
-			: config.public.websiteName
+		return titleChunk ? `${titleChunk} · ${config.public.name}` : `${config.public.websiteName}`
 	}
 })
 
 useSeoMeta({
-	ogTitle: config.public.websiteName,
-	ogDescription: '[og:description]',
-	ogImage: '[og:image]',
-	ogUrl: '[og:url]',
-	twitterTitle: '[twitter:title]',
-	twitterDescription: '[twitter:description]',
-	twitterImage: '[twitter:image]',
-	twitterCard: 'summary'
+	ogTitle: `${config.public.name}`
+	// ogDescription: '[og:description]',
+	// ogImage: '[og:image]',
+	// ogUrl: '[og:url]',
+	// twitterTitle: '[twitter:title]',
+	// twitterDescription: '[twitter:description]',
+	// twitterImage: '[twitter:image]',
+	// twitterCard: 'summary'
 })
 </script>
 
@@ -33,8 +31,8 @@ useSeoMeta({
 		class="min-h-screen max-h-max min-w-screen max-w-screen flex flex-col bg-black text-white"
 	>
 		<NuxtLayout>
-			<VitePwaManifest />
 			<NuxtPage />
+			<VitePwaManifest />
 		</NuxtLayout>
 	</main>
 </template>

@@ -10,6 +10,7 @@ const props = defineProps<{
 		position: string
 		height: number
 		age: string
+		starter: boolean
 	}
 }>()
 
@@ -22,8 +23,8 @@ toRefs(props)
 			:alt="`${player.name} ${player.lastname}`"
 			src="https://a.espncdn.com/combiner/i?img=/i/headshots/nba/players/full/3449.png&w=70&h=50"
 		/>
-		<h1>{{ player.lastname }}</h1>
-		<p>{{ player.name }}</p>
+		<h5>{{ player.name }}</h5>
+		<p>{{ player.lastname }}</p>
 		<p v-if="player.teamName">{{ player.teamName }}</p>
 		<p>{{ player.number }}</p>
 		<p>{{ player.position }}</p>
@@ -34,5 +35,6 @@ toRefs(props)
 			cm)
 		</p>
 		<p>{{ player.age }}</p>
+		<p>{{ player.starter ? '✓' : 'x' }}</p>
 	</section>
 </template>

@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import socials from '~/config/socials'
-import contact from '~/config/contact'
+import socials from '~/config/social.config'
+import contact from '~/config/contact.config'
 
 const { t } = useI18n({ useScope: 'global' })
 const localePath = useLocalePath()

@@ -1,4 +1,6 @@
-export default async (input: { email: string; password: string }) => {
+import type { CookieRef } from '#app'
+
+export default async (input: { email: string; password: string }): Promise<any> => {
 	if (!input || !input.email || !input.password) return
 
 	const { data: response, status } = await useFetch('/api/auth/login', {
@@ -6,17 +8,19 @@ export default async (input: { email: string; password: string }) => {
 		body: input
 	})
 
-	if (!response || !response.value || !response.value.token || status.value !== 'success') return
+	if (!response || !response.value) return
 
-	const token = useCookie('token', {
-		secure: true,
+	const cookieRef: CookieRef<string> = useCookie('token', {
 		sameSite: 'strict',
+		secure: true,
+		httpOnly: false,
 		maxAge: 3600
 	})
 
-	token.value = response.value.token
-
 	const { $localePath } = useNuxtApp()
 
-	return navigateTo($localePath('admin-match'))
+	// @ts-ignore
+	cookieRef.value = response.value.token
+
+	return navigateTo($localePath('admin-dashboard'))
 }

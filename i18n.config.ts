@@ -3,7 +3,8 @@ export default defineI18nConfig(() => ({
 	locale: 'pl',
 	messages: {
 		pl: {
-			static: {
+			footer: {
+				catchphrase: 'Młodzież idzie po swoje!',
 				copyright: 'Wszelkie prawa zastrzeżone',
 				sitemap: 'Mapa strony'
 			},
@@ -68,7 +69,7 @@ export default defineI18nConfig(() => ({
 				about: 'O nas',
 				admin: {
 					login: 'Logowanie',
-					match: 'Zarządzanie Meczem'
+					dashboard: 'Panel'
 				},
 				contact: 'Kontakt',
 				index: 'Strona główna',
@@ -111,7 +112,8 @@ export default defineI18nConfig(() => ({
 			}
 		},
 		en: {
-			static: {
+			footer: {
+				catchphrase: 'The youth is going for their own!',
 				copyright: 'All rights reserved',
 				sitemap: 'Site map'
 			},
@@ -155,7 +157,7 @@ export default defineI18nConfig(() => ({
 				about: 'About',
 				admin: {
 					login: 'Login',
-					match: 'Match Dashboard'
+					dashboard: 'Dashboard'
 				},
 				contact: 'Contact',
 				index: 'Home',

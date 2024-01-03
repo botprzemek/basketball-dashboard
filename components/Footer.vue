@@ -1,16 +1,20 @@
 <script setup lang="ts">
-import links from '~/config/links'
+import links from '~/config/link.config'
 
 const localePath = useLocalePath()
+const config = useRuntimeConfig()
 </script>
 
 <template>
 	<footer class="mt-auto">
 		<nav class="w-screen grid place-content-center">
-			<h1>Knury Knurów - Młodzież idzie po swoje!</h1>
-			<p>{{ $t('static.copyright') }} © {{ new Date().getFullYear() }} - Knury Knurów</p>
+			<h1>{{ config.public.name }} - {{ $t('footer.catchphrase') }}</h1>
+			<p>
+				{{ $t('footer.copyright') }} © {{ new Date().getFullYear() }} -
+				{{ config.public.name }}
+			</p>
 			<NuxtLink :to="localePath('sitemap')">
-				{{ $t('static.sitemap') }}
+				{{ $t('footer.sitemap') }}
 			</NuxtLink>
 			<ul class="w-full flex gap-4">
 				<li v-for="title in Object.keys(links)" :key="title">

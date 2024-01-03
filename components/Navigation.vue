@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import paths from '~/config/paths'
+import paths from '~/config/path.config'
 import logout from '~/utils/auth/logout.auth'
 
 const { locale, locales } = useI18n()
