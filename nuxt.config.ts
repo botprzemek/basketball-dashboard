@@ -17,7 +17,7 @@ export default defineNuxtConfig({
 			name: process.env.APP_NAME,
 			url: {
 				api: process.env.API_BASE,
-				ws: process.env.WEBSOCKET_BASE
+				ws: process.env.WS_BASE
 			}
 		}
 	},
