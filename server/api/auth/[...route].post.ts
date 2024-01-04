@@ -1,6 +1,6 @@
 import { H3Event } from 'h3'
 import type { RuntimeConfig } from 'nuxt/schema'
-import optionsAuth from '~/utils/options.fetch'
+import optionsFetch from '~/utils/options.fetch'
 
 const config: RuntimeConfig = useRuntimeConfig()
 
@@ -15,7 +15,7 @@ export default defineEventHandler(async (event: H3Event): Promise<any> => {
 		const options = {
 			method: 'POST',
 			body: JSON.stringify(body),
-			headers: optionsAuth.headers
+			headers: optionsFetch.headers
 		}
 
 		const url: string = `${config.public.url.api}/auth/${params.route}`

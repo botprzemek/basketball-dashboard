@@ -1,7 +1,7 @@
 import type { H3Event } from 'h3'
 import type { QueryObject } from 'ufo'
 import type { RuntimeConfig } from 'nuxt/schema'
-import optionsAuth from '~/utils/options.fetch'
+import optionsFetch from '~/utils/options.fetch'
 import queryUtil from '~/utils/data/query.util'
 
 const config: RuntimeConfig = useRuntimeConfig()
@@ -17,7 +17,7 @@ export default defineEventHandler(async (event: H3Event): Promise<any[]> => {
 		if (!params) return []
 
 		const url: string = `${config.public.url.api}/${params.route}?${queryUtil(query)}`
-		const response: Response = await fetch(url, optionsAuth)
+		const response: Response = await fetch(url, optionsFetch)
 
 		if (response.status !== 200) return []
 
