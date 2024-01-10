@@ -8,76 +8,17 @@ export default defineNuxtConfig({
 			}
 		}
 	},
-	devtools: {
-		enabled: true
-	},
-	runtimeConfig: {
-		apiKey: process.env.API_KEY,
-		public: {
-			name: process.env.APP_NAME,
-			url: {
-				api: process.env.API_BASE,
-				ws: process.env.WS_BASE
-			}
-		}
-	},
-	modules: [
-		'@nuxtjs/tailwindcss',
-		'@nuxtjs/i18n',
-		'@nuxt/image',
-		'@vueuse/nuxt',
-		'@vite-pwa/nuxt',
-		'nuxt-simple-sitemap'
-	],
-	pwa: {
-		registerType: 'autoUpdate',
-		strategies: 'generateSW',
-		manifest: {
-			name: 'Knury Knurów',
-			short_name: 'Knury',
-			description:
-				'Strona drużyny koszykarskiej Knury Knurów. Inicjatywa wytrwałej młodzieży z ambicjami. Nasza społeczność wciąż się rozrasta, co pozwala nam cieszyć się z gry na boisku i poza nim.',
-			lang: 'pl',
-			display: 'standalone',
-			background_color: '#1d1d1d',
-			theme_color: '#f23535',
-			icons: [
-				{
-					src: '/favicon/favicon-192x192.png',
-					sizes: '192x192',
-					type: 'image/png'
-				},
-				{
-					src: '/favicon/favicon-512x512.png',
-					sizes: '512x512',
-					type: 'image/png'
-				},
-				{
-					src: '/favicon/favicon-512x512-maskable.png',
-					sizes: '512x512',
-					type: 'image/png',
-					purpose: 'any maskable'
-				}
-			]
-		},
-		workbox: {
-			clientsClaim: true,
-			skipWaiting: true,
-			globPatterns: ['**/*.{js,css,html,svg,png,ico,webp}'],
-			navigateFallback: null
-		}
-	},
 	app: {
 		baseURL: '/',
-		rootId: 'app',
-		rootTag: 'main',
-		head: {
+			rootId: 'app',
+			rootTag: 'main',
+			head: {
 			htmlAttrs: {
 				lang: 'pl'
 			},
 			charset: 'utf-8',
-			viewport: 'width=device-width, initial-scale=1',
-			meta: [
+				viewport: 'width=device-width, initial-scale=1',
+				meta: [
 				{
 					name: 'description',
 					content:
@@ -104,7 +45,7 @@ export default defineNuxtConfig({
 					content: 'IE=edge'
 				}
 			],
-			link: [
+				link: [
 				{
 					rel: 'theme-color',
 					color: '#1d1d1d'
@@ -134,18 +75,24 @@ export default defineNuxtConfig({
 			]
 		}
 	},
+	css: [
+		'~/assets/css/tailwind.css'
+	],
+	devtools: {
+		enabled: true
+	},
 	i18n: {
 		baseUrl: '/',
-		defaultLocale: 'pl',
-		locales: [
+			defaultLocale: 'pl',
+			locales: [
 			{
 				code: 'pl',
 				name: 'Polski'
 			},
-			{
-				code: 'en',
-				name: 'English'
-			}
+			// {
+			// 	code: 'en',
+			// 	name: 'English'
+			// }
 		],
 		customRoutes: 'config',
 		pages: {
@@ -193,6 +140,10 @@ export default defineNuxtConfig({
 				pl: '/partnerstwo',
 				en: '/partnership'
 			},
+			privacy: {
+				pl: '/prywatnosc',
+				en: '/privacy'
+			},
 			schedule: {
 				pl: '/terminarz',
 				en: '/schedule'
@@ -209,9 +160,79 @@ export default defineNuxtConfig({
 				pl: '/zespol',
 				en: '/team'
 			},
+			'team/[name]': {
+				pl: '/zespol/[name]',
+				en: '/team/[name]'
+			},
 			'team/[name]/players/[fullname]': {
 				pl: '/zespol/[name]/gracze/[fullname]',
 				en: '/team/[name]/players/[fullname]'
+			},
+			tos: {
+				pl: '/regulamin',
+				en: '/tos'
+			},
+		}
+	},
+	modules: [
+		'@nuxtjs/tailwindcss',
+		'@nuxtjs/i18n',
+		'@nuxt/image',
+		'@vueuse/nuxt',
+		'@vite-pwa/nuxt',
+		'nuxt-simple-sitemap'
+	],
+	postcss: {
+		plugins: {
+			tailwindcss: {},
+			autoprefixer: {}
+		}
+	},
+	pwa: {
+		registerType: 'autoUpdate',
+		strategies: 'generateSW',
+		manifest: {
+			name: 'Knury Knurów',
+			short_name: 'Knury',
+			description:
+				'Strona drużyny koszykarskiej Knury Knurów. Inicjatywa wytrwałej młodzieży z ambicjami. Nasza społeczność wciąż się rozrasta, co pozwala nam cieszyć się z gry na boisku i poza nim.',
+			lang: 'pl',
+			display: 'standalone',
+			background_color: '#1d1d1d',
+			theme_color: '#f23535',
+			icons: [
+				{
+					src: '/favicon/favicon-192x192.png',
+					sizes: '192x192',
+					type: 'image/png'
+				},
+				{
+					src: '/favicon/favicon-512x512.png',
+					sizes: '512x512',
+					type: 'image/png'
+				},
+				{
+					src: '/favicon/favicon-512x512-maskable.png',
+					sizes: '512x512',
+					type: 'image/png',
+					purpose: 'any maskable'
+				}
+			]
+		},
+		workbox: {
+			clientsClaim: true,
+			skipWaiting: true,
+			globPatterns: ['**/*.{js,css,html,svg,png,ico,webp}'],
+			navigateFallback: null
+		}
+	},
+	runtimeConfig: {
+		apiKey: process.env.API_KEY,
+		public: {
+			name: process.env.APP_NAME,
+			url: {
+				api: process.env.API_BASE,
+				ws: process.env.WS_BASE
 			}
 		}
 	}

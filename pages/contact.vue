@@ -1,13 +1,6 @@
 <script setup lang="ts">
 import socials from '~/config/social.config'
 import contact from '~/config/contact.config'
-
-const { t } = useI18n({ useScope: 'global' })
-const localePath = useLocalePath()
-
-useHeadSafe({
-	title: t(`path.${useRouter().currentRoute.value.name.split('___')[0]}`)
-})
 </script>
 
 <template>

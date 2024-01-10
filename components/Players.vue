@@ -7,7 +7,6 @@ const props = defineProps<{
 	team: {
 		id: bigint
 		name: string
-		players: any[]
 	}
 }>()
 
@@ -18,14 +17,28 @@ const { data: players } = await useFetch(`/api/basketball/players?team_id=${prop
 	<h4>Players</h4>
 	<ul>
 		<li>
-			<ul class="grid">
-				<li>Name</li>
-				<li>Lastname</li>
-				<li>Number</li>
-				<li>Height</li>
-				<li>Pos</li>
-				<li>Age</li>
-				<li>Starter</li>
+			<ul class="grid grid-flow-col">
+				<li>
+          <p>first_name</p>
+        </li>
+				<li>
+          <p>last_name</p>
+        </li>
+				<li>
+          <p>number</p>
+        </li>
+				<li>
+          <p>height</p>
+        </li>
+				<li>
+          <p>position</p>
+        </li>
+				<li>
+          <p>age</p>
+        </li>
+				<li>
+          <p>starter</p>
+        </li>
 			</ul>
 		</li>
 		<li v-for="player in players" :key="player.lastname" class="grid">

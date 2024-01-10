@@ -19,7 +19,7 @@ let players = [
 	<ul>
 		<li v-for="player in players" :key="player.player">
 			{{ player.player }}
-			{{ player.value }}
+			{{ player.value }} PTS
 		</li>
 	</ul>
 </template>

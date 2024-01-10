@@ -6,8 +6,8 @@ const config = useRuntimeConfig()
 </script>
 
 <template>
-	<footer class="mt-auto">
-		<nav class="w-screen grid place-content-center">
+	<footer class="z-50 relative w-screen mt-auto px-[15vw]">
+		<nav class="w-full grid">
 			<h1>{{ config.public.name }} - {{ $t('footer.catchphrase') }}</h1>
 			<p>
 				{{ $t('footer.copyright') }} © {{ new Date().getFullYear() }} -

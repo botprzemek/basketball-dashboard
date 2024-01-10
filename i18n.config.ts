@@ -3,11 +3,6 @@ export default defineI18nConfig(() => ({
 	locale: 'pl',
 	messages: {
 		pl: {
-			footer: {
-				catchphrase: 'Młodzież idzie po swoje!',
-				copyright: 'Wszelkie prawa zastrzeżone',
-				sitemap: 'Mapa strony'
-			},
 			pages: {
 				match: {
 					team: {
@@ -75,33 +70,35 @@ export default defineI18nConfig(() => ({
 				index: 'Strona główna',
 				media: 'Media',
 				merch: 'Merch',
-				match: 'Mecz',
+				match: 'Mecze',
 				news: 'Aktualności',
 				partnership: 'Partnerstwo',
+				privacy: 'Polityka prywatności',
 				schedule: 'Terminarz',
 				sitemap: 'Mapa Strony',
 				support: 'Wsparcie',
-				team: 'Zespół'
+				team: 'Zespół',
+				tos: 'Zasady korzystania'
 			},
 			links: {
 				title: {
-					contact: 'Kontakt',
 					about: 'Knury',
+					contact: 'Kontakt',
 					social: 'Sociale'
 				},
 				child: {
-					contact: {
-						reach: 'Dane kontaktowe',
-						form: 'Formularz',
-						join: 'Dołącz do nas',
-						partnership: 'Partnerstwo'
-					},
 					about: {
 						about: 'O nas',
 						privacy: 'Prywatność',
 						team: 'Nasz zespół',
 						support: 'Wsparcie'
 					},
+					contact: {
+						reach: 'Dane kontaktowe',
+						form: 'Formularz',
+						join: 'Dołącz do nas',
+						partnership: 'Partnerstwo'
+					},
 					social: {
 						facebook: 'Facebook',
 						instagram: 'Instagram',
@@ -109,95 +106,100 @@ export default defineI18nConfig(() => ({
 						youtube: 'Youtube'
 					}
 				}
+			},
+			footer: {
+				catchphrase: 'Młodzież idzie po swoje!',
+				copyright: 'Wszelkie prawa zastrzeżone',
+				sitemap: 'Mapa strony'
 			}
 		},
-		en: {
-			footer: {
-				catchphrase: 'The youth is going for their own!',
-				copyright: 'All rights reserved',
-				sitemap: 'Site map'
-			},
-			pages: {
-				contact: {
-					title: 'Contact',
-					description:
-						'Knury Knurów is a project maintained by Non-profit organization named "Cała Naprzód" based in ul. Zwycięstwa 1/1 44-100 Gliwice, accomplished as part of unpaid public benefit activities.',
-					post: {
-						title: 'Post',
-						address: 'Address',
-						office: 'Office',
-						training: 'Training',
-						email: 'E-mail',
-						arena: 'Arena'
-					},
-					socials: {
-						title: 'Social Media',
-						description: 'Join us, on your favorite social media app!'
-					},
-					maps: 'Maps',
-					available: {
-						title: 'Days schedule and opening hours',
-						description:
-							'Do you have a question? Call us! Or send us an email! Prior phone appointment is necessary!',
-						matches: {
-							title: 'Matches',
-							league: 'League - Sunday',
-							scrimmage: 'Scrimmages - Saturday',
-							schedule: 'Schedule'
-						},
-						office: {
-							title: 'Office',
-							days: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
-							hours: '8 AM - 1 PM'
-						}
-					}
-				}
-			},
-			path: {
-				about: 'About',
-				admin: {
-					login: 'Login',
-					dashboard: 'Dashboard'
-				},
-				contact: 'Contact',
-				index: 'Home',
-				media: 'Media',
-				merch: 'Merch',
-				match: 'Match',
-				news: 'News',
-				partnership: 'Partnership',
-				schedule: 'Schedule',
-				sitemap: 'Site Map',
-				support: 'Support',
-				team: 'Team'
-			},
-			links: {
-				title: {
-					contact: 'Contact',
-					about: 'Knury',
-					social: 'Socials'
-				},
-				child: {
-					contact: {
-						reach: 'Reach us',
-						form: 'Form',
-						join: 'Join us',
-						partnership: 'Partnership'
-					},
-					about: {
-						about: 'About us',
-						privacy: 'Privacy',
-						team: 'Our team',
-						support: 'Support'
-					},
-					social: {
-						facebook: 'Facebook',
-						instagram: 'Instagram',
-						tiktok: 'TikTok',
-						youtube: 'Youtube'
-					}
-				}
-			}
-		}
+		// en: {
+		// 	pages: {
+		// 		contact: {
+		// 			title: 'Contact',
+		// 			description:
+		// 				'Knury Knurów is a project maintained by Non-profit organization named "Cała Naprzód" based in ul. Zwycięstwa 1/1 44-100 Gliwice, accomplished as part of unpaid public benefit activities.',
+		// 			post: {
+		// 				title: 'Post',
+		// 				address: 'Address',
+		// 				office: 'Office',
+		// 				training: 'Training',
+		// 				email: 'E-mail',
+		// 				arena: 'Arena'
+		// 			},
+		// 			socials: {
+		// 				title: 'Social Media',
+		// 				description: 'Join us, on your favorite social media app!'
+		// 			},
+		// 			maps: 'Maps',
+		// 			available: {
+		// 				title: 'Days schedule and opening hours',
+		// 				description:
+		// 					'Do you have a question? Call us! Or send us an email! Prior phone appointment is necessary!',
+		// 				matches: {
+		// 					title: 'Matches',
+		// 					league: 'League - Sunday',
+		// 					scrimmage: 'Scrimmages - Saturday',
+		// 					schedule: 'Schedule'
+		// 				},
+		// 				office: {
+		// 					title: 'Office',
+		// 					days: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
+		// 					hours: '8 AM - 1 PM'
+		// 				}
+		// 			}
+		// 		}
+		// 	},
+		// 	path: {
+		// 		about: 'About',
+		// 		admin: {
+		// 			login: 'Login',
+		// 			dashboard: 'Dashboard'
+		// 		},
+		// 		contact: 'Contact',
+		// 		index: 'Home',
+		// 		media: 'Media',
+		// 		merch: 'Merch',
+		// 		match: 'Matches',
+		// 		news: 'News',
+		// 		partnership: 'Partnership',
+		// 		schedule: 'Schedule',
+		// 		sitemap: 'Site Map',
+		// 		support: 'Support',
+		// 		team: 'Team'
+		// 	},
+		// 	links: {
+		// 		title: {
+		// 			contact: 'Contact',
+		// 			about: 'Knury',
+		// 			social: 'Socials'
+		// 		},
+		// 		child: {
+		// 			contact: {
+		// 				reach: 'Reach us',
+		// 				form: 'Form',
+		// 				join: 'Join us',
+		// 				partnership: 'Partnership'
+		// 			},
+		// 			about: {
+		// 				about: 'About us',
+		// 				privacy: 'Privacy',
+		// 				team: 'Our team',
+		// 				support: 'Support'
+		// 			},
+		// 			social: {
+		// 				facebook: 'Facebook',
+		// 				instagram: 'Instagram',
+		// 				tiktok: 'TikTok',
+		// 				youtube: 'Youtube'
+		// 			}
+		// 		}
+		// 	},
+		// 	footer: {
+		// 		catchphrase: 'The youth is going for their own!',
+		// 		copyright: 'All rights reserved',
+		// 		sitemap: 'Site map'
+		// 	}
+		// }
 	}
 }))

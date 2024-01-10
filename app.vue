@@ -1,6 +1,6 @@
 <script setup lang="ts">
 const config = useRuntimeConfig()
-const { locale } = useI18n()
+const { t, locale } = useI18n({ useScope: 'global' })
 
 useHeadSafe({
 	htmlAttrs: {
@@ -15,8 +15,8 @@ useHeadSafe({
 })
 
 useSeoMeta({
-	ogTitle: `${config.public.name}`
-	// ogDescription: '[og:description]',
+	ogTitle: `${t(`path.${useRouter().currentRoute.value.name.split('___')[0]}`)} · ${config.public.name}`,
+	// ogDescription: `${t(`pages.${useRouter().currentRoute.value.name.split('___')[0]}.description`)}`
 	// ogImage: '[og:image]',
 	// ogUrl: '[og:url]',
 	// twitterTitle: '[twitter:title]',
