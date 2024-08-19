@@ -1,5 +1,5 @@
 export default {
-  headers: {
-    Authorization: `Bearer ${apiSecret}`
-  }
+	headers: {
+		Authorization: `Bearer ${apiSecret}`
+	}
 }

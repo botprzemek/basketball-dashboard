@@ -1,5 +1,5 @@
 import type { H3Event } from 'h3'
-import optionsAuth from "~/utils/auth/options.auth";
+import optionsAuth from '~/utils/auth/options.auth'
 
 const {
 	apiSecret,
