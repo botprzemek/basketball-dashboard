@@ -1,52 +1,20 @@
-<script setup lang="ts">
-const localePath = useLocalePath()
-const { t } = useI18n({ useScope: 'global' })
+<script async lang="ts" setup>
+const players = ref([]);
 
-useHeadSafe({
-	title: t(`path.${useRouter().currentRoute.value.name.split('___')[0]}`)
-})
+onMounted(async () => {
+    players.value = await $fetch("/api/players", {
+        method: "GET",
+        mode: "cors",
+        credentials: "include",
+        headers: {
+            "Content-Type": "application/json"
+        }
+    });
+});
 </script>
 
 <template>
-	Młodzież idzie po swoje!
-
-	<br />
-
-	Komponent: Terminarz
-
-	<br />
-
-	Komponent: Aktualności
-
-	<br />
-
-	Komponent: Zespół
-
-	<br />
-
-	Komponent: Merch
-
-	<br />
-
-	Komponent: O nas
-
-	<br />
-
-	Komponent: Road mapa z osiągnięciami
-
-	<br />
-
-	Komponent: Partnerstwo
-
-	<br />
-
-	Komponent: Media
-
-	<br />
-
-	Komponent: Kontakt
-
-	<br />
-
-	Komponent: Mapa strony
+    <NuxtLink to="/auth/register">Register</NuxtLink>
+    <NuxtLink to="/auth/login">Login</NuxtLink>
+    {{ players }}
 </template>
