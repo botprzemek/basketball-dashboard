@@ -1,6 +1,8 @@
 export default {
+ // srcDir: "src/",
 	app: {
-		rootTag: "main",
+					rootTag: "main",
 	},
-	// srcDir: "src/",
-}
+
+ compatibilityDate: "2024-08-21",
+};
