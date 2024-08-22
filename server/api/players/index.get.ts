@@ -1,12 +1,17 @@
 export default defineEventHandler(async (event) => {
-	const tokens = getRequestHeaders(event)["cookie"];
+    const cookies = getRequestHeaders(event)["cookie"];
 
-	return fetch("http://localhost:3000/v1/players", {
-		method: "GET",
-		mode: "cors",
-		headers: {
-			"Content-Type": "application/json",
-			"cookie": `${tokens}`
-		},
-	});
+    if (cookies) {
+        return;
+    }
+
+    const data = await fetch("http://localhost:3000/v1/players", {
+        method: "GET",
+        mode: "cors",
+        credentials: "include",
+        headers: {
+            "Content-Type": "application/json",
+            cookie: `${cookies}`,
+        },
+    });
 });
