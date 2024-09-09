@@ -1,0 +1,15 @@
+.git/
+.github/
+.idea/
+dist/
+node_modules/
+requests/
+
+.env
+.env.*
+
+.dockerignore
+.gitignore
+.prettierignore
+Dockerfile
+README.md
