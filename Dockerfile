@@ -41,6 +41,7 @@ WORKDIR /app
 COPY --from=production --chown=node:node /app/.output ./.output
 
 ENV NODE_ENV=production
+ENV NITRO_PRESET=node_cluster
 
 CMD ["node", ".output/server/index.mjs"]
 

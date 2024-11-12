@@ -3,11 +3,16 @@ export default defineNuxtRouteMiddleware(async (to, from) => {
         return;
     }
 
-    console.log(useCookie("refresh-token").value);
+    if (import.meta.client) {
+        return;
+    }
 
-    // if (!useCookie("refresh-token").value) {
-    //     return navigateTo({ path: "/auth/login" });
-    // }
+    if (useCookie("refresh-token").value) {
+        return;
+    }
+
+    return navigateTo({ path: "/auth/login" });
+
     // const tokens = useCookie("access-token").value;
     // console.log(tokens);
 });
